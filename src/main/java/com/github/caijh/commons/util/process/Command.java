@@ -2,6 +2,8 @@ package com.github.caijh.commons.util.process;
 
 public interface Command {
 
+    String getCmdName();
+
     String[] getCmdArray();
 
     default ProcessResult exec() {
