@@ -13,6 +13,11 @@ public class Strings {
 
     }
 
+    /**
+     * @param s     字符串
+     * @param regex 分割符
+     * @return list of string
+     */
     public static List<String> toList(String s, String regex) {
         return Arrays.stream(s.split(regex)).filter(StringUtils::isNotBlank).collect(Collectors.toList());
     }
