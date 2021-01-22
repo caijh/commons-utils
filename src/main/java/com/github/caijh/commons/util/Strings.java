@@ -23,6 +23,13 @@ public class Strings {
         return Arrays.stream(s.split(regex)).filter(StringUtils::isNotBlank).collect(Collectors.toList());
     }
 
+    /**
+     * @param s     字符串
+     * @param regex 分割符
+     * @param map   转化函数
+     * @param <R>   list中元素的类型
+     * @return list of R
+     */
     public static <R> List<R> toList(String s, String regex, Function<String, R> map) {
         return Arrays.stream(s.split(regex)).filter(StringUtils::isNotBlank).map(map).collect(Collectors.toList());
     }
