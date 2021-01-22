@@ -14,6 +14,7 @@ public class Delimiters {
     public static final String DOT = ".";
     public static final String COLON = ":";
     public static final String BAR = "|";
+    public static final String DASH = "-";
 
     private Delimiters() {
 
