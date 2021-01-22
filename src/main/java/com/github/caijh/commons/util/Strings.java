@@ -2,6 +2,7 @@ package com.github.caijh.commons.util;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import com.github.caijh.commons.util.constants.Delimiters;
@@ -22,8 +23,16 @@ public class Strings {
         return Arrays.stream(s.split(regex)).filter(StringUtils::isNotBlank).collect(Collectors.toList());
     }
 
+    public static <R> List<R> toList(String s, String regex, Function<String, R> map) {
+        return Arrays.stream(s.split(regex)).filter(StringUtils::isNotBlank).map(map).collect(Collectors.toList());
+    }
+
     public static List<String> toListByComma(String s) {
         return toList(s, Delimiters.COMMA);
+    }
+
+    public static List<Integer> toIntListByComma(String s) {
+        return toList(s, Delimiters.COMMA, Integer::parseInt);
     }
 
 }

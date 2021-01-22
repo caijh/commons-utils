@@ -11,12 +11,18 @@ public class StringsTest {
 
     @Test
     public void toList() {
-        final List<String> strings = Strings.toList("a,b,c", ",");
+        final List<String> strings = Strings.toListByComma("a,b,c");
         List<String> list = new ArrayList<>();
         list.add("a");
         list.add("b");
         list.add("c");
         assertTrue(strings.containsAll(list));
+    }
+
+    @Test
+    public void toIntList() {
+        final List<Integer> strings = Strings.toIntListByComma("1,2,3");
+        assertTrue(strings.contains(1));
     }
 
 }
