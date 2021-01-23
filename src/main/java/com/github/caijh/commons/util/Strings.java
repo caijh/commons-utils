@@ -6,7 +6,6 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import com.github.caijh.commons.util.constants.Delimiters;
-import org.apache.commons.lang3.StringUtils;
 
 public class Strings {
 
@@ -39,7 +38,7 @@ public class Strings {
     }
 
     public static List<Integer> toIntListByComma(String s) {
-        return toList(s, Delimiters.COMMA, Integer::parseInt);
+        return toList(s, Delimiters.COMMA, value -> Integer.valueOf(value.trim()));
     }
 
 }
