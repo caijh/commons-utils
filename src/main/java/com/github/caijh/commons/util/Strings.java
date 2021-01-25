@@ -38,7 +38,15 @@ public class Strings {
     }
 
     public static List<Integer> toIntListByComma(String s) {
-        return toList(s, Delimiters.COMMA, value -> Integer.valueOf(value.trim()));
+        return toList(s, Delimiters.COMMA, Strings::toInt);
+    }
+
+    public static long toLong(String s) {
+        return Long.parseLong(s.trim());
+    }
+
+    public static int toInt(String s) {
+        return Integer.parseInt(s.trim());
     }
 
 }

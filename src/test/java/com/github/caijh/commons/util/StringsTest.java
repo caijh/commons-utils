@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class StringsTest {
@@ -23,6 +24,12 @@ public class StringsTest {
     public void toIntList() {
         final List<Integer> strings = Strings.toIntListByComma("1,2,3");
         assertTrue(strings.contains(1));
+    }
+
+    @Test
+    public void testToLong() {
+        long a = Strings.toLong("123");
+        assertEquals(123, a);
     }
 
 }
