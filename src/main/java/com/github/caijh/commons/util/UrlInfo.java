@@ -4,9 +4,9 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Url {
+public class UrlInfo {
 
-    public static final Pattern PATTERN_URL = Pattern
+    public static final Pattern URL_PATTERN = Pattern
         .compile("((?<schema>\\w+)://)?((?<user>\\w+):(?<password>\\w+)@)?(?<host>[^/:]+)(:(?<port>\\d*))?(?<path>[^ ]*)");
     private String schema;
     private String user;
@@ -16,32 +16,38 @@ public class Url {
     private String path;
     private Map<String, String> params;
 
-    private Url() {
+    private UrlInfo() {}
 
-    }
-
-    public static Url from(String urlString) {
-        Matcher matcher = PATTERN_URL.matcher(urlString);
-        Url url = null;
+    public static UrlInfo from(String urlString) {
+        Matcher matcher = URL_PATTERN.matcher(urlString);
+        UrlInfo urlInfo = null;
         if (matcher.matches()) {
-            url = new Url();
-            url.schema = matcher.group("schema");
-            url.user = matcher.group("user");
-            url.password = matcher.group("password");
-            url.host = matcher.group("host");
-            url.port = matcher.group("port");
+            urlInfo = new UrlInfo();
+            urlInfo.schema = matcher.group("schema");
+            urlInfo.user = matcher.group("user");
+            urlInfo.password = matcher.group("password");
+            urlInfo.host = matcher.group("host");
+            urlInfo.port = matcher.group("port");
             String path = matcher.group("path");
             if (path.contains("?")) {
                 int index = path.indexOf("?");
-                url.path = path.substring(0, index);
+                urlInfo.path = path.substring(0, index);
                 String params = path.substring(index + 1);
-                url.params = KeyValuePairUtils.readAsMap(params);
+                urlInfo.params = KeyValuePairUtils.readAsMap(params);
             } else {
-                url.path = path;
+                urlInfo.path = path;
             }
 
         }
-        return url;
+        return urlInfo;
+    }
+
+    public static String getParam(String url, String key) {
+        UrlInfo urlInfo = from(url);
+        if (urlInfo != null) {
+            return urlInfo.getParams().get(key);
+        }
+        return null;
     }
 
     public String getSchema() {
