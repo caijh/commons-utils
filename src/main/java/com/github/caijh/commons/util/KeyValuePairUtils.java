@@ -1,8 +1,6 @@
 package com.github.caijh.commons.util;
 
 
-import java.lang.reflect.Field;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,7 +35,7 @@ public class KeyValuePairUtils {
         for (String pair : pairs) {
             int index = pair.indexOf(Delimiters.EQUAL);
             if (index > -1) {
-                map.put(pair.substring(0, index), pair.substring(index + 1, pair.length()));
+                map.put(pair.substring(0, index), pair.substring(index + 1));
             }
         }
         return map;
@@ -47,19 +45,9 @@ public class KeyValuePairUtils {
         return readAsMap(keyValuePairs, Delimiters.AND);
     }
 
-    public static <T> T mapToBean(String keyValuePars, Class<T> clazz) throws Exception {
+    public static <T> T mapToBean(String keyValuePars, Class<T> clazz) {
         Map<String, String> map = readAsMap(keyValuePars, Delimiters.AND);
-        T bean = clazz.newInstance();
-        for (Map.Entry<String, String> entry : map.entrySet()) {
-            String key = entry.getKey();
-            String value = entry.getValue();
-            Field field = Arrays.stream(clazz.getDeclaredFields()).filter(e -> e.getName().equals(key)).findFirst().orElse(null);
-            if (field != null) {
-                field.setAccessible(true);
-                field.set(bean, value);
-            }
-        }
-        return bean;
+        return Maps.toObject(map, clazz);
     }
 
     public static boolean isKeyValuePair(String str) {
