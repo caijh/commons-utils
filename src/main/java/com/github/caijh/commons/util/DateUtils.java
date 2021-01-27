@@ -3,8 +3,11 @@ package com.github.caijh.commons.util;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.annotation.Nonnull;
 
 import com.github.caijh.commons.util.exception.DateException;
+import org.joda.time.Days;
+import org.joda.time.LocalDate;
 
 /**
  * DateUtils.
@@ -52,6 +55,10 @@ public class DateUtils {
         } catch (ParseException e) {
             throw new DateException(e);
         }
+    }
+
+    public static int daysBetween(@Nonnull Date d1, @Nonnull Date d2) {
+        return Days.daysBetween(LocalDate.fromDateFields(d1), LocalDate.fromDateFields(d2)).getDays();
     }
 
 

@@ -2,6 +2,7 @@ package com.github.caijh.commons.util;
 
 import java.util.Date;
 
+import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -22,6 +23,12 @@ public class DateUtilsTest {
         System.out.println(DateUtils.nowAsString("yyyy-MM-dd"));
 
         System.out.println(DateUtils.currentTimestamp());
+
+        int days = DateUtils.daysBetween(now, date);
+
+        Assert.assertEquals(0, days);
+
+        Assert.assertEquals(1, DateUtils.daysBetween(date, LocalDate.fromDateFields(date).plusDays(1).toDate()));
 
     }
 
