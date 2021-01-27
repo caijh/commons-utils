@@ -32,6 +32,9 @@ public class DateUtilsTest {
 
         Assert.assertEquals(1, DateUtils.daysBetween(date, LocalDate.fromDateFields(date).plusDays(1).toDate()));
 
+        now = DateUtils.now("HH:mm:ss");
+        System.out.println(DateUtils.format(now));
+
     }
 
 

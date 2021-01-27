@@ -25,6 +25,10 @@ public class DateUtils {
         return new Date();
     }
 
+    public static Date now(String pattern) {
+        return parse(nowAsString(pattern), pattern);
+    }
+
     public static String nowAsString() {
         return format(now());
     }
