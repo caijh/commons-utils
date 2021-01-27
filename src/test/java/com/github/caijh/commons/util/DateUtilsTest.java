@@ -24,6 +24,8 @@ public class DateUtilsTest {
 
         System.out.println(DateUtils.currentTimestamp());
 
+        System.out.println(DateUtils.getTimestamp(date));
+
         int days = DateUtils.daysBetween(now, date);
 
         Assert.assertEquals(0, days);

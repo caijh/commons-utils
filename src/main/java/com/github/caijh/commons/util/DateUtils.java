@@ -37,6 +37,10 @@ public class DateUtils {
         return new Date().getTime() / 1000;
     }
 
+    public static long getTimestamp(Date date) {
+        return date.getTime() / 1000;
+    }
+
     public static String format(Date date) {
         return format(date, DATE_TIME_FORMAT_DEFAULT);
     }
