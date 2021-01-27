@@ -26,6 +26,10 @@ public class DateUtils {
         return format(now());
     }
 
+    public static String nowAsString(String pattern) {
+        return format(now(), pattern);
+    }
+
     public static long currentTimestamp() {
         return new Date().getTime() / 1000;
     }

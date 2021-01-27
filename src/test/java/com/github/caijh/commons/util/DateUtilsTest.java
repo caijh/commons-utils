@@ -19,6 +19,8 @@ public class DateUtilsTest {
         Date date = DateUtils.parse(nowAsString);
         Assert.assertEquals(now, date);
 
+        System.out.println(DateUtils.nowAsString("yyyy-MM-dd"));
+
         System.out.println(DateUtils.currentTimestamp());
 
     }
