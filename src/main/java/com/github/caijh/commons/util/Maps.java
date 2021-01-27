@@ -45,7 +45,7 @@ public class Maps {
      * @param <T>   type parameter
      * @return the object of T
      */
-    public static <T> T toObject(Map<?, Object> map, Class<T> clazz) {
+    public static <T> T toObject(Map<?, ?> map, Class<T> clazz) {
         return JSON.parseObject(JSON.toJSONString(map), clazz);
     }
 
