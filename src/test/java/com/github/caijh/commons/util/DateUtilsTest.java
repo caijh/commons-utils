@@ -3,6 +3,7 @@ package com.github.caijh.commons.util;
 import java.util.Date;
 
 import org.joda.time.LocalDate;
+import org.joda.time.LocalDateTime;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -34,6 +35,23 @@ public class DateUtilsTest {
 
         now = DateUtils.now("HH:mm:ss");
         System.out.println(DateUtils.format(now));
+
+        System.out.println(DateUtils.format(LocalDateTime.now().minusYears(1).dayOfYear().withMinimumValue().withMillisOfDay(0).toDate()));
+        System.out.println(DateUtils.format(LocalDateTime.now().minusYears(1).dayOfYear().withMaximumValue().withTime(23, 59, 59, 999).toDate()));
+
+        System.out.println(DateUtils.format(LocalDateTime.now().minusMonths(1).dayOfMonth().withMinimumValue().withMillisOfDay(0).toDate()));
+        System.out.println(DateUtils.format(LocalDateTime.now().minusMonths(1).dayOfMonth().withMaximumValue().withTime(23, 59, 59, 999).toDate()));
+
+        System.out.println(DateUtils.format((LocalDateTime.now().dayOfWeek().withMaximumValue().millisOfDay().withMaximumValue().toDate())));
+
+        now = DateUtils.now();
+        System.out.println(DateUtils.format(now));
+        Date newDate = DateUtils.addSeconds(now, 600);
+        System.out.println(DateUtils.format(newDate));
+
+        now = DateUtils.now();
+        System.out.println(DateUtils.format(now));
+        System.out.println(DateUtils.format(DateUtils.addDays(now, 1)));
 
     }
 

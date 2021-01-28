@@ -8,6 +8,7 @@ import javax.annotation.Nonnull;
 import com.github.caijh.commons.util.exception.DateException;
 import org.joda.time.Days;
 import org.joda.time.LocalDate;
+import org.joda.time.LocalDateTime;
 
 /**
  * DateUtils.
@@ -67,6 +68,14 @@ public class DateUtils {
 
     public static int daysBetween(@Nonnull Date d1, @Nonnull Date d2) {
         return Days.daysBetween(LocalDate.fromDateFields(d1), LocalDate.fromDateFields(d2)).getDays();
+    }
+
+    public static Date addSeconds(Date date, int seconds) {
+        return LocalDateTime.fromDateFields(date).plusSeconds(seconds).toDate();
+    }
+
+    public static Date addDays(Date date, int days) {
+        return LocalDateTime.fromDateFields(date).plusDays(days).toDate();
     }
 
 
