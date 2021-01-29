@@ -36,7 +36,7 @@ public class AssertUtils {
     }
 
     public static void notEmpty(Collection<?> collection) throws IllegalAccessException {
-        isTrue(CollectionUtils.isNotEmpty(collection), IllegalAccessException.class, null);
+        isTrue(Collections.isNotEmpty(collection), IllegalAccessException.class, null);
     }
 
     public static <T extends Exception> void isTrue(boolean assertIsTrue, Class<T> exceptionClass) throws T {

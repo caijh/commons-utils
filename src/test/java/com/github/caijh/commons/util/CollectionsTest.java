@@ -7,7 +7,7 @@ import java.util.Set;
 
 import org.junit.Test;
 
-public class CollectionUtilsTest {
+public class CollectionsTest {
 
     @Test
     public void toHashSet() {
@@ -74,7 +74,7 @@ public class CollectionUtilsTest {
     @Test
     public void testToArrayList() {
         String[] strArrays = {"a", "b", "c"};
-        List<?> objects = CollectionUtils.toLinkedList(strArrays);
+        List<?> objects = Collections.toLinkedList(strArrays);
         objects.forEach(System.out::println);
 
 
@@ -82,7 +82,7 @@ public class CollectionUtilsTest {
         strSet.add("a");
         strSet.add("b");
         strSet.add("c");
-        CollectionUtils.toLinkedList(strSet).forEach(System.out::println);
+        Collections.toLinkedList(strSet).forEach(System.out::println);
     }
 
     @Test
@@ -91,7 +91,7 @@ public class CollectionUtilsTest {
         list.add(1);
         list.add(2);
         list.add(3);
-        Set<Integer> set = CollectionUtils.toHashSet(list);
+        Set<Integer> set = Collections.toHashSet(list);
 
         for (Integer i : set) {
             System.out.println(i);
