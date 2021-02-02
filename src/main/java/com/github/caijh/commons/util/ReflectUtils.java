@@ -54,12 +54,12 @@ public class ReflectUtils {
         }
         Method getMethod = getMethod(object.getClass(), getFiledMethodName("get", filed));
         Object returnObject = getMethod.invoke(object);
-        return chain ? invokeGetter(returnObject, chainField.substring(firstDotIdx + 1, chainField.length())) :
+        return chain ? invokeGetter(returnObject, chainField.substring(firstDotIdx + 1)) :
             returnObject;
     }
 
     public static String getFiledMethodName(String action, String filed) {
-        return action + StringUtils.firstCharUpperCase(filed);
+        return action + Strings.firstCharUpperCase(filed);
     }
 
 }

@@ -32,4 +32,9 @@ public class StringsTest {
         assertEquals(123, a);
     }
 
+    @Test
+    public void test() {
+        assertTrue(Strings.isNotBlank("a"));
+    }
+
 }
