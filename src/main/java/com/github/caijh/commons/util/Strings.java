@@ -53,24 +53,6 @@ public class Strings extends org.apache.commons.lang3.StringUtils {
         return Integer.parseInt(s.trim());
     }
 
-    public static String toString(Object object) {
-        if (object instanceof Date) {
-            return DateUtils.format((Date) object);
-        }
-        if (object instanceof Number) {
-            if (object instanceof Float) {
-                return Format.DEFAULT.fromFloat((Float) object);
-            }
-            if (object instanceof Double) {
-                return Format.DEFAULT.fromDouble((Double) object);
-            }
-            if (object instanceof BigDecimal) {
-                return Format.DEFAULT.fromBigDecimal((BigDecimal) object);
-            }
-        }
-        return object.toString();
-    }
-
     public static String firstCharUpperCase(String str) {
         if (isBlank(str)) {
             throw new IllegalArgumentException();
@@ -119,6 +101,24 @@ public class Strings extends org.apache.commons.lang3.StringUtils {
         public abstract String fromDouble(final double doubleValue);
 
         public abstract String fromBigDecimal(final BigDecimal bigDecimalValue);
+    }
+
+    public static String toString(Object object) {
+        if (object instanceof Date) {
+            return DateUtils.format((Date) object);
+        }
+        if (object instanceof Number) {
+            if (object instanceof Float) {
+                return Format.DEFAULT.fromFloat((Float) object);
+            }
+            if (object instanceof Double) {
+                return Format.DEFAULT.fromDouble((Double) object);
+            }
+            if (object instanceof BigDecimal) {
+                return Format.DEFAULT.fromBigDecimal((BigDecimal) object);
+            }
+        }
+        return object.toString();
     }
 
 }
