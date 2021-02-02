@@ -30,9 +30,9 @@ public class RandomUtils {
         char[] random = new char[length];
         List<Character> list = new ArrayList<>();
         for (Alphabet alphabet : alphabets) {
-            CharUtils.addAll(list, getUseAlphabet(alphabet));
+            Chars.addAll(list, getUseAlphabet(alphabet));
         }
-        char[] source = CharUtils.toCharArray(list);
+        char[] source = Chars.toCharArray(list);
         for (int i = 0; i < length; i++) {
             random[i] = source[rand.nextInt(source.length)];
         }

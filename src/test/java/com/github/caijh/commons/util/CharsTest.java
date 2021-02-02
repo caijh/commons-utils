@@ -6,16 +6,16 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class CharUtilsTest {
+public class CharsTest {
 
     @Test
     public void test_addAll() {
         List<Character> target = new ArrayList<>();
         target.add('a');
         target.add('b');
-        CharUtils.addAll(target, new char[]{'c', 'd'});
+        Chars.addAll(target, new char[]{'c', 'd'});
 
-        Assert.assertEquals("abcd", new String(CharUtils.toCharArray(target)));
+        Assert.assertEquals("abcd", new String(Chars.toCharArray(target)));
     }
 
 }

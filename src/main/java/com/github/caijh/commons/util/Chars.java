@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
  * @author caijh
  * @since 2016-9-26
  */
-public class CharUtils extends org.apache.commons.lang3.CharUtils {
+public class Chars extends org.apache.commons.lang3.CharUtils {
 
     /**
      * 向List&lt;Character&gt;中添加字符数组中的符组.
