@@ -19,6 +19,10 @@ public class Collections {
     private Collections() {
     }
 
+    public static <T> List<T> emptyList() {
+        return java.util.Collections.emptyList();
+    }
+
     public static <T> Set<T> toHashSet(List<T> list) {
         return new HashSet<>(list);
     }
