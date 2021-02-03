@@ -5,6 +5,7 @@ import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -23,6 +24,9 @@ public class Strings extends org.apache.commons.lang3.StringUtils {
      * @return list of string
      */
     public static List<String> toList(String s, String regex) {
+        if (Objects.isNull(s)) {
+            return Collections.emptyList();
+        }
         return Arrays.stream(s.split(regex)).filter(Strings::isNotBlank).collect(Collectors.toList());
     }
 
@@ -34,6 +38,9 @@ public class Strings extends org.apache.commons.lang3.StringUtils {
      * @return list of R
      */
     public static <R> List<R> toList(String s, String regex, Function<String, R> map) {
+        if (Objects.isNull(s)) {
+            return Collections.emptyList();
+        }
         return Arrays.stream(s.split(regex)).filter(Strings::isNotBlank).map(map).collect(Collectors.toList());
     }
 
