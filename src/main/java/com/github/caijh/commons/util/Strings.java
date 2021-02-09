@@ -11,11 +11,21 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import com.github.caijh.commons.util.constants.Delimiters;
+import org.apache.commons.lang3.StringUtils;
+
 
 public class Strings extends org.apache.commons.lang3.StringUtils {
 
     private Strings() {
 
+    }
+
+    public static int[] toIntArray(String s, String regex) {
+        if (StringUtils.isBlank(s)) {
+            return new int[]{};
+        }
+
+        return Arrays.stream(s.split(regex)).filter(Strings::isNotBlank).mapToInt(Integer::valueOf).toArray();
     }
 
     /**
@@ -31,17 +41,17 @@ public class Strings extends org.apache.commons.lang3.StringUtils {
     }
 
     /**
-     * @param s     字符串
-     * @param regex 分割符
-     * @param map   转化函数
-     * @param <R>   list中元素的类型
+     * @param s      字符串
+     * @param regex  分割符
+     * @param mapper 转化函数
+     * @param <R>    list中元素的类型
      * @return list of R
      */
-    public static <R> List<R> toList(String s, String regex, Function<String, R> map) {
+    public static <R> List<R> toList(String s, String regex, Function<String, R> mapper) {
         if (Objects.isNull(s)) {
             return Collections.emptyList();
         }
-        return Arrays.stream(s.split(regex)).filter(Strings::isNotBlank).map(map).collect(Collectors.toList());
+        return Arrays.stream(s.split(regex)).filter(Strings::isNotBlank).map(mapper).collect(Collectors.toList());
     }
 
     public static List<String> toListByComma(String s) {
