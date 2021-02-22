@@ -53,7 +53,16 @@ public class DateUtilsTest {
         System.out.println(DateUtils.format(now));
         System.out.println(DateUtils.format(DateUtils.addDays(now, 1)));
 
+        now = DateUtils.now();
+        newDate = DateUtils.addSeconds(now, 600);
+        System.out.println(DateUtils.format(newDate));
+
+        Date mDate = getMiddleDate(now, newDate);
+        System.out.println(DateUtils.format(mDate));
     }
 
+    private Date getMiddleDate(Date d1, Date d2) {
+        return LocalDateTime.fromDateFields(d1).plusMillis((int) Math.abs(d2.getTime() - d1.getTime()) / 2).toDate();
+    }
 
 }
