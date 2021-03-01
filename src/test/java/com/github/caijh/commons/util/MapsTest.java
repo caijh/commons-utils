@@ -31,6 +31,12 @@ public class MapsTest {
     }
 
     @Test
+    public void fromXml() {
+        String xml = "<xml><a><a1>1</a1><a2>2</a2></a></xml>";
+        Map<String, Object> map = Maps.fromXml(xml);
+    }
+
+    @Test
     public void toObject() {
         Map<String, Object> map = new HashMap<>();
         map.put("name", "aaa");

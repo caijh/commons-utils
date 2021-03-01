@@ -1,9 +1,15 @@
 package com.github.caijh.commons.util;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.alibaba.fastjson.JSON;
+import com.github.caijh.commons.util.exception.XMLParseException;
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
 
 public class Maps {
 
@@ -37,6 +43,33 @@ public class Maps {
             return null;
         }
         return JSON.parseObject(json, Map.class);
+    }
+
+    public static Map<String, Object> fromXml(String xml) {
+        Document document;
+        try {
+            document = DocumentHelper.parseText(xml);
+        } catch (DocumentException e) {
+            throw new XMLParseException("Xml Parse Exception", e);
+        }
+        Element element = document.getRootElement();
+        Map<String, Object> map = new HashMap<>();
+        fillMap(element, map);
+        return map;
+    }
+
+    private static void fillMap(Element element, Map<String, Object> map) {
+
+        List<Element> elements = element.elements();
+        if (Collections.isEmpty(elements)) {
+            map.put(element.getName(), element.getTextTrim());
+        } else {
+            Map<String, Object> innerMap = new HashMap<>();
+            for (Element e : elements) {
+                fillMap(e, innerMap);
+            }
+            map.put(element.getName(), innerMap);
+        }
     }
 
     /**
