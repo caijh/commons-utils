@@ -1,6 +1,7 @@
 package com.github.caijh.commons.util;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.alibaba.fastjson.JSON;
@@ -32,8 +33,10 @@ public class MapsTest {
 
     @Test
     public void fromXml() {
-        String xml = "<xml><a><a1>1</a1><a2>2</a2></a></xml>";
+        String xml = "<xml><a><a1>1</a1><a2>2</a2><a1>2</a1></a></xml>";
         Map<String, Object> map = Maps.fromXml(xml);
+        Object value = Maps.getValue(map, "xml.a.a1");
+        assertTrue(value instanceof List && ((List<?>) value).contains("1"));
     }
 
     @Test

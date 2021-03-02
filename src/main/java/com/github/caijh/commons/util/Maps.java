@@ -1,10 +1,13 @@
 package com.github.caijh.commons.util;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.alibaba.fastjson.JSON;
+import com.github.caijh.commons.util.constants.Delimiters;
+import com.github.caijh.commons.util.exception.MapKeyException;
 import com.github.caijh.commons.util.exception.XMLParseException;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -58,18 +61,69 @@ public class Maps {
         return map;
     }
 
+    @SuppressWarnings("unchecked")
     private static void fillMap(Element element, Map<String, Object> map) {
-
         List<Element> elements = element.elements();
         if (Collections.isEmpty(elements)) {
             map.put(element.getName(), element.getTextTrim());
-        } else {
-            Map<String, Object> innerMap = new HashMap<>();
-            for (Element e : elements) {
-                fillMap(e, innerMap);
-            }
-            map.put(element.getName(), innerMap);
+            return;
         }
+
+        Map<String, Object> innerMap = new HashMap<>();
+        for (Element e : elements) {
+            String eleName = e.getName();
+            Object obj = innerMap.get(eleName);
+            if (obj == null) {
+                fillMap(e, innerMap);
+                continue;
+            }
+            if (obj instanceof java.util.Map) {
+                List<Map<String, Object>> list1 = new ArrayList<>();
+                list1.add((Map<String, Object>) innerMap.remove(eleName));
+                fillMap(e, innerMap);
+                list1.add((Map<String, Object>) innerMap.remove(eleName));
+                innerMap.put(eleName, list1);
+            } else if (obj instanceof List) {
+                List<Object> list2 = (List<Object>) obj;
+                if (list2.get(0) instanceof Map) { //判断List下是String还是Map
+                    fillMap(e, innerMap);
+                    list2.add(innerMap.remove(eleName));
+                    innerMap.put(eleName, list2);
+                } else {
+                    fillMap(e, innerMap);
+                    list2.add(e.getTextTrim());
+                    innerMap.put(eleName, list2);
+                }
+            } else if (obj instanceof String) { //同一级只有一层的标签
+                List<Object> list2 = new ArrayList<>();
+                list2.add(obj);
+                list2.add(e.getTextTrim());
+                fillMap(e, innerMap);
+                innerMap.put(eleName, list2);
+            }
+        }
+        map.put(element.getName(), innerMap);
+    }
+
+    @SuppressWarnings("unchecked")
+    public static Object getValue(Map<String, Object> map, String keyPath) {
+        String[] keys = keyPath.split("\\" + Delimiters.DOT);
+        Map<String, Object> valueMap = map;
+        for (int i = 0; i < keys.length; i++) {
+            String key = keys[i];
+            Object o = valueMap.get(key);
+            if (i == keys.length - 1) {
+                return o;
+            }
+            if (o == null) {
+                throw new MapKeyException("map doesn't contain key, key = " + key);
+            }
+            if (!Map.class.isAssignableFrom(o.getClass())) {
+                throw new MapKeyException("map value is not map class, key = " + key);
+            }
+            valueMap = ((Map<String, Object>) o);
+        }
+        return null;
     }
 
     /**
