@@ -14,6 +14,7 @@ import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
+import org.jetbrains.annotations.Nullable;
 
 public class Maps {
 
@@ -49,6 +50,10 @@ public class Maps {
         return JSON.parseObject(json, Map.class);
     }
 
+    /**
+     * @param xml xml string
+     * @return map parse from xml string
+     */
     public static Map<String, Object> fromXml(String xml) {
         Document document;
         try {
@@ -106,6 +111,14 @@ public class Maps {
         map.put(element.getName(), innerMap);
     }
 
+    /**
+     * get the value of map in key.
+     *
+     * @param map     map object
+     * @param keyPath the key link path, like a.b.c
+     * @return the value of key
+     */
+    @Nullable
     @SuppressWarnings("unchecked")
     public static Object getValue(@Nonnull Map<String, Object> map, @Nonnull String keyPath) {
         String[] keys = keyPath.split("\\" + Delimiters.DOT);
