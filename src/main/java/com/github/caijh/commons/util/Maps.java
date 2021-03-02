@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.annotation.Nonnull;
 
 import com.alibaba.fastjson.JSON;
 import com.github.caijh.commons.util.constants.Delimiters;
@@ -106,7 +107,7 @@ public class Maps {
     }
 
     @SuppressWarnings("unchecked")
-    public static Object getValue(Map<String, Object> map, String keyPath) {
+    public static Object getValue(@Nonnull Map<String, Object> map, @Nonnull String keyPath) {
         String[] keys = keyPath.split("\\" + Delimiters.DOT);
         Map<String, Object> valueMap = map;
         for (int i = 0; i < keys.length; i++) {
