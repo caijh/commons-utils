@@ -84,28 +84,28 @@ public class Maps {
                 continue;
             }
             if (obj instanceof java.util.Map) {
-                List<Map<String, Object>> list1 = new ArrayList<>();
-                list1.add((Map<String, Object>) innerMap.remove(eleName));
+                List<Map<String, Object>> list = new ArrayList<>();
+                list.add((Map<String, Object>) innerMap.remove(eleName));
                 fillMap(e, innerMap);
-                list1.add((Map<String, Object>) innerMap.remove(eleName));
-                innerMap.put(eleName, list1);
+                list.add((Map<String, Object>) innerMap.remove(eleName));
+                innerMap.put(eleName, list);
             } else if (obj instanceof List) {
-                List<Object> list2 = (List<Object>) obj;
-                if (list2.get(0) instanceof Map) { //判断List下是String还是Map
+                List<Object> list = (List<Object>) obj;
+                if (list.get(0) instanceof Map) { //判断List下是String还是Map
                     fillMap(e, innerMap);
-                    list2.add(innerMap.remove(eleName));
-                    innerMap.put(eleName, list2);
+                    list.add(innerMap.remove(eleName));
+                    innerMap.put(eleName, list);
                 } else {
                     fillMap(e, innerMap);
-                    list2.add(e.getTextTrim());
-                    innerMap.put(eleName, list2);
+                    list.add(e.getTextTrim());
+                    innerMap.put(eleName, list);
                 }
             } else if (obj instanceof String) { //同一级只有一层的标签
-                List<Object> list2 = new ArrayList<>();
-                list2.add(obj);
-                list2.add(e.getTextTrim());
+                List<Object> list = new ArrayList<>();
+                list.add(obj);
+                list.add(e.getTextTrim());
                 fillMap(e, innerMap);
-                innerMap.put(eleName, list2);
+                innerMap.put(eleName, list);
             }
         }
         map.put(element.getName(), innerMap);
