@@ -47,6 +47,7 @@
         <joda-time.version>2.10.10</joda-time.version>
         <kotlin.version>1.4.30</kotlin.version>
         <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
+        <zxing.version>3.4.1</zxing.version>
     </properties>
 
     <dependencies>
@@ -91,6 +92,17 @@
             <artifactId>dom4j</artifactId>
             <version>${dom4j.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>${zxing.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>javase</artifactId>
+            <version>${zxing.version}</version>
+        </dependency>
+
 
         <dependency>
             <groupId>junit</groupId>
