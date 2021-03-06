@@ -1,13 +1,13 @@
 package com.github.caijh.commons.util
 
+import java.io.ByteArrayOutputStream
+import javax.annotation.Nonnull
+import javax.imageio.ImageIO
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.EncodeHintType
 import com.google.zxing.client.j2se.MatrixToImageWriter
 import com.google.zxing.qrcode.QRCodeWriter
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel
-import java.io.ByteArrayOutputStream
-import javax.annotation.Nonnull
-import javax.imageio.ImageIO
 
 object QRCodeUtils {
     fun createQRCode(@Nonnull content: String, @Nonnull width: Int, @Nonnull height: Int): String {
