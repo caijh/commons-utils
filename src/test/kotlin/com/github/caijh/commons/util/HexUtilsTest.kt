@@ -25,9 +25,4 @@ class HexUtilsTest {
         Assert.assertEquals("hello world", hexStr2ByteArr?.let { String(it) })
     }
 
-    @Test
-    fun hexStr2ByteArr() {
-
-    }
-
 }
