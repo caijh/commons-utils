@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class KeyValuePairUtilsTest {
@@ -14,6 +15,10 @@ public class KeyValuePairUtilsTest {
         Map<String, String> map = KeyValuePairUtils.readAsMap(pair);
 
         assertTrue(map.containsKey("a") && map.containsKey("b") && map.containsKey("c"));
+
+        String keyValuePair = KeyValuePairUtils.map2KeyValuePair(map);
+
+        assertEquals(pair, keyValuePair);
 
     }
 
