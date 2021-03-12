@@ -1,10 +1,12 @@
 package com.github.caijh.commons.util;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.alibaba.fastjson.JSON;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -59,6 +61,16 @@ public class MapsTest {
         map1.put("age2", "20");
         Map<String, String> merge = Maps.merge(map1, map2);
         assertTrue(merge.containsKey("name") && merge.get("name").equals("test2"));
+    }
+
+    @Test
+    public void getValue() {
+        Map<Integer, String> map = new HashMap<>();
+        map.put(1, "caijh");
+        map.put(2, "test");
+        List<String> values = Maps.getValues(map, Arrays.asList(1, 2));
+        String join = StringUtils.join(values, ",");
+        assertEquals("caijh,test", join);
     }
 
     public static class User {

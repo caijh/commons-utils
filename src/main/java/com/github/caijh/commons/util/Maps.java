@@ -141,6 +141,26 @@ public class Maps {
     }
 
     /**
+     * get values from map.
+     *
+     * @param map  the map
+     * @param keys the key to find
+     * @param <K>  k type
+     * @param <V>  value type
+     * @return list of value
+     */
+    public static <K, V> List<V> getValues(@Nonnull Map<K, V> map, @Nonnull List<K> keys) {
+        List<V> list = new ArrayList<>();
+        keys.forEach(k -> {
+            V v = map.get(k);
+            if (v != null) {
+                list.add(v);
+            }
+        });
+        return list;
+    }
+
+    /**
      * @param map   map
      * @param clazz target object class
      * @param <T>   type parameter
