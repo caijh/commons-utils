@@ -4,9 +4,9 @@ package com.github.caijh.commons.util;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import javax.annotation.Nonnull;
 
 import com.github.caijh.commons.util.constants.Delimiters;
-import com.sun.istack.internal.NotNull;
 
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
@@ -55,7 +55,7 @@ public class KeyValuePairUtils {
         return isNotBlank(str) && str.contains(Delimiters.EQUAL);
     }
 
-    public static String map2KeyValuePair(@NotNull Map<String, String> map) {
+    public static String map2KeyValuePair(@Nonnull Map<String, String> map) {
         StringBuilder sb = new StringBuilder();
         map.forEach((k, v) -> sb.append(k).append("=").append(v).append("&"));
         String s = sb.toString();
