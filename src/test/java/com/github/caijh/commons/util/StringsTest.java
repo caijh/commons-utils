@@ -6,6 +6,7 @@ import java.util.List;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class StringsTest {
@@ -35,6 +36,13 @@ public class StringsTest {
     @Test
     public void test() {
         assertTrue(Strings.isNotBlank("a"));
+    }
+
+    @Test
+    public void isInt() {
+        boolean isInt = Strings.isInt("123");
+        assertTrue(isInt);
+        assertFalse(Strings.isInt("0123"));
     }
 
 }

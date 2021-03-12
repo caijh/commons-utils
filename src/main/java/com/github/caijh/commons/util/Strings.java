@@ -7,6 +7,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -66,6 +68,12 @@ public class Strings extends org.apache.commons.lang3.StringUtils {
         return Long.parseLong(s.trim());
     }
 
+    public static boolean isInt(String s) {
+        Pattern pattern = Pattern.compile("^[1-9][0-9]*$");
+        Matcher matcher = pattern.matcher(s);
+        return matcher.matches();
+    }
+
     public static int toInt(String s) {
         return Integer.parseInt(s.trim());
     }
@@ -81,6 +89,24 @@ public class Strings extends org.apache.commons.lang3.StringUtils {
 
     public static boolean isAnyBlank(String... s) {
         return Stream.of(s).anyMatch(Strings::isBlank);
+    }
+
+    public static String toString(Object object) {
+        if (object instanceof Date) {
+            return DateUtils.format((Date) object);
+        }
+        if (object instanceof Number) {
+            if (object instanceof Float) {
+                return Format.DEFAULT.fromFloat((Float) object);
+            }
+            if (object instanceof Double) {
+                return Format.DEFAULT.fromDouble((Double) object);
+            }
+            if (object instanceof BigDecimal) {
+                return Format.DEFAULT.fromBigDecimal((BigDecimal) object);
+            }
+        }
+        return object.toString();
     }
 
     /**
@@ -118,24 +144,6 @@ public class Strings extends org.apache.commons.lang3.StringUtils {
         public abstract String fromDouble(final double doubleValue);
 
         public abstract String fromBigDecimal(final BigDecimal bigDecimalValue);
-    }
-
-    public static String toString(Object object) {
-        if (object instanceof Date) {
-            return DateUtils.format((Date) object);
-        }
-        if (object instanceof Number) {
-            if (object instanceof Float) {
-                return Format.DEFAULT.fromFloat((Float) object);
-            }
-            if (object instanceof Double) {
-                return Format.DEFAULT.fromDouble((Double) object);
-            }
-            if (object instanceof BigDecimal) {
-                return Format.DEFAULT.fromBigDecimal((BigDecimal) object);
-            }
-        }
-        return object.toString();
     }
 
 }
