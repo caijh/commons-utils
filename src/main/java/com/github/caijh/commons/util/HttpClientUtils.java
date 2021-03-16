@@ -2,6 +2,7 @@ package com.github.caijh.commons.util;
 
 import java.io.IOException;
 
+import com.github.caijh.commons.util.exception.HttpException;
 import okhttp3.Headers;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -9,6 +10,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
+import org.jetbrains.annotations.NotNull;
 
 public class HttpClientUtils {
 
@@ -36,19 +38,28 @@ public class HttpClientUtils {
             builder.headers(headers);
         }
         Request request = builder.url(url).build();
-        Response response = httpClient.newCall(request).execute();
-        if (!response.isSuccessful()) {
-            throw new IOException("服务器端错误: " + response);
-        }
-        ResponseBody responseBody = response.body();
-        return responseBody != null ? responseBody.string() : "";
+        return getRespBody(request);
     }
 
-    public static String post(String url, String json) throws IOException {
+    @NotNull
+    private static String getRespBody(Request request) {
+        try {
+            Response response = httpClient.newCall(request).execute();
+            if (!response.isSuccessful()) {
+                throw new HttpException(response.code(), response.message());
+            }
+            ResponseBody responseBody = response.body();
+            return responseBody != null ? responseBody.string() : "";
+        } catch (IOException e) {
+            throw new HttpException(-1, e.getMessage());
+        }
+    }
+
+    public static String post(String url, String json) {
         return post(url, null, MediaType.parse(APPLICATION_JSON_UTF8), json);
     }
 
-    public static String post(String url, Headers headers, MediaType mediaType, String content) throws IOException {
+    public static String post(String url, Headers headers, MediaType mediaType, String content) {
         Request.Builder builder = new Request.Builder();
         if (headers != null) {
             builder.headers(headers);
@@ -56,12 +67,7 @@ public class HttpClientUtils {
         Request request = builder.url(url)
                                  .post(RequestBody.create(content, mediaType))
                                  .build();
-        Response response = httpClient.newCall(request).execute();
-        if (!response.isSuccessful()) {
-            throw new IOException("服务器端错误: " + response);
-        }
-        ResponseBody responseBody = response.body();
-        return responseBody != null ? responseBody.string() : "";
+        return getRespBody(request);
     }
 
 }
