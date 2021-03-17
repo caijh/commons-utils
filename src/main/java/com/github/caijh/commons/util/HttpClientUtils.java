@@ -1,6 +1,7 @@
 package com.github.caijh.commons.util;
 
 import java.io.IOException;
+import javax.annotation.Nonnull;
 
 import com.github.caijh.commons.util.exception.HttpException;
 import okhttp3.Headers;
@@ -10,7 +11,6 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
-import org.jetbrains.annotations.NotNull;
 
 public class HttpClientUtils {
 
@@ -30,9 +30,8 @@ public class HttpClientUtils {
      * @param url     url
      * @param headers headers
      * @return response content
-     * @throws IOException net exception
      */
-    public static String get(String url, Headers headers) throws IOException {
+    public static String get(String url, Headers headers) {
         Request.Builder builder = new Request.Builder();
         if (headers != null) {
             builder.headers(headers);
@@ -41,7 +40,7 @@ public class HttpClientUtils {
         return getRespBody(request);
     }
 
-    @NotNull
+    @Nonnull
     private static String getRespBody(Request request) {
         try {
             Response response = httpClient.newCall(request).execute();
