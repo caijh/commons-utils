@@ -20,7 +20,7 @@ public class HttpClientUtils {
     private HttpClientUtils() {
     }
 
-    public static String get(String url) throws IOException {
+    public static String get(String url) {
         return get(url, null);
     }
 
