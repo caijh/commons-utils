@@ -55,8 +55,18 @@ public class HttpClientUtils {
         return post(url, null, MediaType.parse(APPLICATION_JSON_UTF8), json);
     }
 
+    public static <T> T post(String url, String json, RespBodyConvertor<T> convertor) {
+        String respBody = post(url, json);
+        return convertor.convert(respBody);
+    }
+
     public static String post(String url, MediaType mediaType, String content) {
         return post(url, null, mediaType, content);
+    }
+
+    public static <T> T post(String url, MediaType mediaType, String content, RespBodyConvertor<T> convertor) {
+        String respBody = post(url, mediaType, content);
+        return convertor.convert(respBody);
     }
 
     public static String post(String url, Headers headers, MediaType mediaType, String content) {
