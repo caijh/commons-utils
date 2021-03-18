@@ -16,13 +16,13 @@ public class HttpClientUtils {
 
     private static final OkHttpClient httpClient = new OkHttpClient();
     private static final String APPLICATION_JSON_UTF8 = "application/json;charset=UTF-8";
-    private static final Headers HEADERS_NULL = null;
+    private static final Headers HEADERS_EMPTY = null;
 
     private HttpClientUtils() {
     }
 
     public static String get(String url) {
-        return get(url, HEADERS_NULL);
+        return get(url, HEADERS_EMPTY);
     }
 
     public static <T> T get(String url, @Nonnull RespBodyConvertor<T> convertor) {
