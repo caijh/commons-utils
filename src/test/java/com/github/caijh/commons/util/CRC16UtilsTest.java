@@ -5,7 +5,7 @@ import org.junit.Test;
 public class CRC16UtilsTest {
 
     @Test
-    public void test_getCRC16() {
+    public void getCRC16() {
         String abc = "abc";
         int crc16 = CRC16Utils.getCRC16(abc);
         System.out.println(crc16);
