@@ -1,12 +1,11 @@
 package com.github.caijh.commons.util
 
-import okhttp3.internal.and
 
 object HexUtils {
     fun byteArr2HexStr(buf: ByteArray): String {
         val sb = StringBuilder()
         for (i in buf.indices) {
-            var hex = Integer.toHexString(buf[i] and 0xFF)
+            var hex = Integer.toHexString(buf[i].toInt() and 0xFF)
             if (hex.length == 1) {
                 hex = "0$hex"
             }
