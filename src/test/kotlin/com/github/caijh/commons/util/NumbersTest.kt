@@ -11,5 +11,9 @@ class NumbersTest {
         val b2 = BigDecimal.valueOf(90)
         val rate = Numbers.getRate(b1, b2)
         Assert.assertEquals(11.0F, rate)
+
+        val i1 = 100
+        val i2 = 90
+        Assert.assertEquals(11.0F, Numbers.getRate(i1, i2))
     }
 }

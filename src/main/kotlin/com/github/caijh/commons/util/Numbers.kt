@@ -17,4 +17,8 @@ object Numbers {
             b1.subtract(b2).divide(b2, scale, RoundingMode.HALF_UP).toFloat() * 100
         }
     }
+
+    fun getRate(b1: Int, b2: Int, scale: Int = 2): Float {
+        return getRate(BigDecimal(b1.toString()), BigDecimal(b2), scale)
+    }
 }
