@@ -1,0 +1,20 @@
+package com.github.caijh.commons.util
+
+import java.math.BigDecimal
+import java.math.RoundingMode
+import kotlin.Float.Companion.NaN
+
+object Numbers {
+    fun getRate(b1: BigDecimal, b2: BigDecimal, scale: Int = 2): Float {
+        //计算差值
+        if (b2 == b1) {
+            //数值一样，说明没有增长
+            return BigDecimal.ZERO.toFloat()
+        }
+        return if (b2 == BigDecimal.ZERO) {
+            NaN
+        } else {
+            b1.subtract(b2).divide(b2, scale, RoundingMode.HALF_UP).toFloat() * 100
+        }
+    }
+}
