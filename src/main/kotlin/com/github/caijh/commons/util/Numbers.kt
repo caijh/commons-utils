@@ -21,4 +21,13 @@ object Numbers {
     fun getRate(b1: Int, b2: Int, scale: Int = 2): Float {
         return getRate(BigDecimal(b1.toString()), BigDecimal(b2), scale)
     }
+
+    fun getPercent(n1: Int, n2: Int, scale: Int = 2): Int {
+        if (n2 == 0) {
+            return 100
+        }
+
+        return BigDecimal(n1.toString())
+            .divide(BigDecimal(n2.toString()), scale, RoundingMode.HALF_UP).multiply(BigDecimal(100)).intValueExact()
+    }
 }
