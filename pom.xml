@@ -24,9 +24,9 @@
         </developer>
     </developers>
     <scm>
-        <connection>scm:git:https://github.com/caijh/commons-utils.git</connection>
-        <developerConnection>scm:git:https://github.com/caijh/commons-utils.git</developerConnection>
-        <url>https://github.com/caijh/commons-utils.git</url>
+        <connection>scm:git:git@github.com:caijh/commons-utils.git</connection>
+        <developerConnection>scm:git:git@github.com:caijh/commons-utils.git</developerConnection>
+        <url>git@github.com:caijh/commons-utils</url>
     </scm>
 
     <properties>
