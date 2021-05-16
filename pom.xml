@@ -217,7 +217,7 @@
                 <configuration>
                     <useReleaseProfile>false</useReleaseProfile>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
-                    <arguments>-Dline.separator='\n' -DskipTests -P release</arguments>
+                    <arguments>-DskipTests -P release</arguments>
                     <scmCommentPrefix>「release」</scmCommentPrefix>
                 </configuration>
             </plugin>
