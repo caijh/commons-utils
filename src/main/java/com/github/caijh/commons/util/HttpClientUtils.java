@@ -1,11 +1,14 @@
 package com.github.caijh.commons.util;
 
+import java.io.File;
 import java.io.IOException;
 import javax.annotation.Nonnull;
 
 import com.github.caijh.commons.util.exception.HttpException;
+import com.github.caijh.commons.util.exception.UploadException;
 import okhttp3.Headers;
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -98,5 +101,34 @@ public class HttpClientUtils {
             throw new HttpException(-1, e.getMessage());
         }
     }
+
+    /**
+     * upload file to the url.
+     *
+     * @param url  url
+     * @param file file to upload
+     * @return ResponseBody
+     */
+    public static ResponseBody upload(String url, File file) {
+        RequestBody requestBody = new MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("file", file.getName(),
+                RequestBody.create(file, MediaType.parse("multipart/form-data")))
+            .build();
+
+        Request request = new Request.Builder()
+            .header("Authorization", "Client-ID " + UuidUtils.uuid())
+            .url(url)
+            .post(requestBody)
+            .build();
+
+        try {
+            Response response = httpClient.newCall(request).execute();
+            return response.body();
+        } catch (Exception e) {
+            throw new UploadException();
+        }
+    }
+
 
 }
