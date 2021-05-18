@@ -4,7 +4,7 @@ public class HttpException extends RuntimeException {
 
     private final int code;
 
-    public HttpException(Integer code, String message) {
+    public HttpException(int code, String message) {
         super(message);
         this.code = code;
     }
