@@ -2,10 +2,12 @@ package com.github.caijh.commons.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.Date;
 import javax.annotation.Nonnull;
 
 import com.github.caijh.commons.util.exception.DateException;
+import com.github.caijh.commons.util.exception.InstanceNotSupportException;
 import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
@@ -20,7 +22,9 @@ public class DateUtils {
 
     private static final String DATE_TIME_FORMAT_DEFAULT = "yyyy-MM-dd HH:mm:ss";
 
-    private DateUtils() {}
+    private DateUtils() {
+        throw new InstanceNotSupportException();
+    }
 
     public static Date now() {
         return new Date();
@@ -39,11 +43,11 @@ public class DateUtils {
     }
 
     public static long currentTimestamp() {
-        return new Date().getTime() / 1000;
+        return Instant.now().getEpochSecond();
     }
 
     public static long getTimestamp(Date date) {
-        return date.getTime() / 1000;
+        return date.toInstant().getEpochSecond();
     }
 
     public static String format(Date date) {
