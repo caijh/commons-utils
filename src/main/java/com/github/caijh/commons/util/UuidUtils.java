@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import com.github.caijh.commons.util.constants.Delimiters;
 
+@Deprecated
 public class UuidUtils {
 
     private UuidUtils() {
