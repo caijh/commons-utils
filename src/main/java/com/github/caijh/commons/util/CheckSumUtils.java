@@ -12,13 +12,16 @@ import java.security.NoSuchAlgorithmException;
  */
 public class CheckSumUtils {
 
+    private CheckSumUtils() {
+    }
+
     /**
      * 获取文件的sum值.
      *
      * @param file the file
      * @return the sum value string of file
-     * @throws NoSuchAlgorithmException
-     * @throws IOException
+     * @throws NoSuchAlgorithmException SHA1 algorithm not found
+     * @throws IOException              if read file fail
      */
     public static String checkSum(File file) throws NoSuchAlgorithmException, IOException {
         MessageDigest md = MessageDigest.getInstance("SHA1");
@@ -35,7 +38,7 @@ public class CheckSumUtils {
             byte[] mdBytes = md.digest();
 
             // convert the byte to hex format
-            StringBuilder sb = new StringBuilder("");
+            StringBuilder sb = new StringBuilder();
             for (byte mdByte : mdBytes) {
                 sb.append(Integer.toString((mdByte & 0xff) + 0x100, 16).substring(1));
             }

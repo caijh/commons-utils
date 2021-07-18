@@ -23,6 +23,10 @@ public class Collections {
         return java.util.Collections.emptyList();
     }
 
+    public static <T> Set<T> emptySet() {
+        return java.util.Collections.emptySet();
+    }
+
     public static <T> Set<T> toHashSet(List<T> list) {
         return new HashSet<>(list);
     }

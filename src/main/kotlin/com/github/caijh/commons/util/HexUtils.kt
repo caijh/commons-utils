@@ -1,5 +1,7 @@
 package com.github.caijh.commons.util
 
+import org.apache.commons.lang3.StringUtils
+
 
 object HexUtils {
     fun byteArr2HexStr(buf: ByteArray): String {
@@ -15,7 +17,7 @@ object HexUtils {
     }
 
     fun hexStr2ByteArr(hexStr: String): ByteArray? {
-        if (Strings.isBlank(hexStr)) {
+        if (StringUtils.isBlank(hexStr)) {
             return null
         }
         val result = ByteArray(hexStr.length shr 1)

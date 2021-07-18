@@ -8,16 +8,19 @@ import java.util.stream.Collectors;
  * @author caijh
  * @since 2016-9-26
  */
-public class Chars extends org.apache.commons.lang3.CharUtils {
+public class Chars {
+
+    private Chars() {
+    }
 
     /**
-     * 向List&lt;Character&gt;中添加字符数组中的符组.
+     * 向@{code List<Character>}中添加字符数组中的字符数组.
      *
      * @param target List<Character> target
      * @param source char[] source
      */
     public static void addAll(List<Character> target, char[] source) {
-        List<Character> collect = new String(source).chars().mapToObj(c -> (char) c).collect(Collectors.toList());
+        List<Character> collect = new String(source).chars().mapToObj(char.class::cast).collect(Collectors.toList());
         target.addAll(collect);
     }
 
