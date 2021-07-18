@@ -10,7 +10,8 @@ object MD5 {
      * @param s 字符串
      * @return md5 string
      */
-    fun md5(s: String): String {
+    @JvmStatic
+    fun get(s: String): String {
         val md = MessageDigest.getInstance("MD5")
         md.update(s.toByteArray(StandardCharsets.UTF_8))
         val byteData = md.digest()
