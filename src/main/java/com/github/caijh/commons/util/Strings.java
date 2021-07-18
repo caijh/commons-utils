@@ -16,7 +16,7 @@ import com.github.caijh.commons.util.constants.Delimiters;
 import org.apache.commons.lang3.StringUtils;
 
 
-public class Strings extends org.apache.commons.lang3.StringUtils {
+public class Strings {
 
     private Strings() {
 
@@ -27,7 +27,7 @@ public class Strings extends org.apache.commons.lang3.StringUtils {
             return new int[]{};
         }
 
-        return Arrays.stream(s.split(regex)).filter(Strings::isNotBlank).mapToInt(Integer::valueOf).toArray();
+        return Arrays.stream(s.split(regex)).filter(StringUtils::isNotBlank).mapToInt(Integer::valueOf).toArray();
     }
 
     /**
@@ -39,7 +39,7 @@ public class Strings extends org.apache.commons.lang3.StringUtils {
         if (Objects.isNull(s)) {
             return Collections.emptyList();
         }
-        return Arrays.stream(s.split(regex)).filter(Strings::isNotBlank).collect(Collectors.toList());
+        return Arrays.stream(s.split(regex)).filter(StringUtils::isNotBlank).collect(Collectors.toList());
     }
 
     /**
@@ -53,7 +53,7 @@ public class Strings extends org.apache.commons.lang3.StringUtils {
         if (Objects.isNull(s)) {
             return Collections.emptyList();
         }
-        return Arrays.stream(s.split(regex)).filter(Strings::isNotBlank).map(mapper).collect(Collectors.toList());
+        return Arrays.stream(s.split(regex)).filter(StringUtils::isNotBlank).map(mapper).collect(Collectors.toList());
     }
 
     public static List<String> toListByComma(String s) {
@@ -79,7 +79,7 @@ public class Strings extends org.apache.commons.lang3.StringUtils {
     }
 
     public static String firstCharUpperCase(String str) {
-        if (isBlank(str)) {
+        if (StringUtils.isBlank(str)) {
             throw new IllegalArgumentException();
         }
         StringBuilder stringBuilder = new StringBuilder(str);
@@ -88,7 +88,7 @@ public class Strings extends org.apache.commons.lang3.StringUtils {
     }
 
     public static boolean isAnyBlank(String... s) {
-        return Stream.of(s).anyMatch(Strings::isBlank);
+        return Stream.of(s).anyMatch(StringUtils::isBlank);
     }
 
     public static String toString(Object object) {
