@@ -3,6 +3,7 @@ package com.github.caijh.commons.util;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -35,7 +36,7 @@ public class StringsTest {
 
     @Test
     public void test() {
-        assertTrue(Strings.isNotBlank("a"));
+        assertTrue(StringUtils.isNotBlank("a"));
     }
 
     @Test
