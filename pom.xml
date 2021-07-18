@@ -30,6 +30,9 @@
   </scm>
 
     <properties>
+        <dom4j.version>2.1.3</dom4j.version>
+        <dokka.version>1.4.32</dokka.version>
+
         <!-- 文件拷贝时的编码 -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -37,8 +40,6 @@
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-
-        <dom4j.version>2.1.3</dom4j.version>
         <java.version>1.8</java.version>
         <fastjson.version>1.2.75</fastjson.version>
         <okhttp.version>4.8.0</okhttp.version>
@@ -234,6 +235,24 @@
                 <plugins>
                     <!-- Source -->
                     <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>build-helper-maven-plugin</artifactId>
+                        <version>3.2.0</version>
+                        <executions>
+                            <execution>
+                                <phase>generate-sources</phase>
+                                <goals>
+                                    <goal>add-source</goal>
+                                </goals>
+                                <configuration>
+                                    <sources>
+                                        <source>${project.basedir}/src/main/kotlin</source>
+                                    </sources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
                         <version>3.1.0</version>
@@ -248,25 +267,28 @@
                     </plugin>
                     <!-- Javadoc -->
                     <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>3.1.0</version>
-                        <configuration>
-                            <additionalOptions>${javadoc.opts}</additionalOptions>
-                            <show>private</show>
-                            <nohelp>true</nohelp>
-                            <charset>UTF-8</charset>
-                            <encoding>UTF-8</encoding>
-                            <docencoding>UTF-8</docencoding>
-                        </configuration>
+                        <groupId>org.jetbrains.dokka</groupId>
+                        <artifactId>dokka-maven-plugin</artifactId>
+                        <version>${dokka.version}</version>
                         <executions>
                             <execution>
-                                <phase>package</phase>
+                                <phase>prepare-package</phase>
                                 <goals>
-                                    <goal>jar</goal>
+                                    <goal>dokka</goal>
+                                    <goal>javadoc</goal>
+                                    <goal>javadocJar</goal>
                                 </goals>
                             </execution>
                         </executions>
+                        <configuration>
+                            <dokkaPlugins>
+                                <plugin>
+                                    <groupId>org.jetbrains.dokka</groupId>
+                                    <artifactId>kotlin-as-java-plugin</artifactId>
+                                    <version>${dokka.version}</version>
+                                </plugin>
+                            </dokkaPlugins>
+                        </configuration>
                     </plugin>
                     <!-- GPG -->
                     <plugin>
