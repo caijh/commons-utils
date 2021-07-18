@@ -8,10 +8,10 @@ public class UuidUtilsTest {
 
     @Test
     public void uuid() {
-        String uuid = UUID.INSTANCE.get();;
+        String uuid = UUID.get();
         System.out.println(uuid);
         assertFalse(uuid.contains("-"));
-        uuid = UUID.INSTANCE.get(true, true);
+        uuid = UUID.get(true, true);
         assertFalse(uuid.contains("-"));
         System.out.println(uuid);
     }
