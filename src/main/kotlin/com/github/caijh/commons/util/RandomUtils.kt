@@ -30,7 +30,7 @@ object RandomUtils {
         val random = CharArray(length)
         val list: MutableList<Char> = ArrayList()
         for (alphabet in alphabets) {
-            list.addAll(getUseAlphabet(alphabet).toList())
+            Chars.addAll(list, getUseAlphabet(alphabet))
         }
         val source = Chars.toCharArray(list)
         for (i in 0 until length) {
@@ -40,8 +40,7 @@ object RandomUtils {
     }
 
     private fun getUseAlphabet(alphabet: Alphabet): CharArray {
-        var chars: CharArray? = null
-        chars = when (alphabet) {
+        val chars: CharArray = when (alphabet) {
             Alphabet.LOWERCASE_LETTERS -> LOWERCASE_LETTERS_ALPHABET
             Alphabet.NUMBERS -> NUMBERS_ALPHABET
             Alphabet.SYMBOLS -> SYMBOLS_ALPHABET
