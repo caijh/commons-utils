@@ -7,7 +7,7 @@ object UUID {
 
     @JvmStatic
     fun get(): String {
-        return get(true, true)
+        return get(replaceDash = true, toUpperCase = true)
     }
 
     @JvmStatic
