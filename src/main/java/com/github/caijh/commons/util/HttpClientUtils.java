@@ -117,7 +117,7 @@ public class HttpClientUtils {
             .build();
 
         Request request = new Request.Builder()
-            .header("Authorization", "Client-ID " + UuidUtils.uuid())
+            .header("Authorization", "Client-ID " + UUID.get())
             .url(url)
             .post(requestBody)
             .build();

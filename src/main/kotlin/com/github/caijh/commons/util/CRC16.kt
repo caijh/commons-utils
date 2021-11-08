@@ -1,14 +1,13 @@
-package com.github.caijh.commons.util;
+package com.github.caijh.commons.util
 
-import static java.nio.charset.StandardCharsets.UTF_8;
+import java.nio.charset.StandardCharsets
 
 /**
- * @author <a href="caiqizhe@gmail.com">caiqizhe@gmail.com</a>
+ * @author [caiqizhe@gmail.com](caiqizhe@gmail.com)
  * @since 2016-11-11
  */
-public class CRC16Utils {
-
-    private static final int[] table = {
+object CRC16 {
+    private val table = intArrayOf(
         0x0000, 0xC0C1, 0xC181, 0x0140, 0xC301, 0x03C0, 0x0280, 0xC241,
         0xC601, 0x06C0, 0x0780, 0xC741, 0x0500, 0xC5C1, 0xC481, 0x0440,
         0xCC01, 0x0CC0, 0x0D80, 0xCD41, 0x0F00, 0xCFC1, 0xCE81, 0x0E40,
@@ -40,20 +39,16 @@ public class CRC16Utils {
         0x8801, 0x48C0, 0x4980, 0x8941, 0x4B00, 0x8BC1, 0x8A81, 0x4A40,
         0x4E00, 0x8EC1, 0x8F81, 0x4F40, 0x8D01, 0x4DC0, 0x4C80, 0x8C41,
         0x4400, 0x84C1, 0x8581, 0x4540, 0x8701, 0x47C0, 0x4680, 0x8641,
-        0x8201, 0x42C0, 0x4380, 0x8341, 0x4100, 0x81C1, 0x8081, 0x4040,
-    };
+        0x8201, 0x42C0, 0x4380, 0x8341, 0x4100, 0x81C1, 0x8081, 0x4040
+    )
 
-    private CRC16Utils() {
-
-    }
-
-    public static int getCRC16(String s) {
-        byte[] bytes = s.getBytes(UTF_8);
-        int crc = 0x0000;
-        for (byte b : bytes) {
-            crc = (crc >>> 8) ^ table[(crc ^ b) & 0xff];
+    @JvmStatic
+    fun getValue(s: String): Int {
+        val bytes = s.toByteArray(StandardCharsets.UTF_8)
+        var crc = 0x0000
+        for (b in bytes) {
+            crc = crc ushr 8 xor table[crc xor b.toInt() and 0xff]
         }
-        return crc;
+        return crc
     }
-
 }
