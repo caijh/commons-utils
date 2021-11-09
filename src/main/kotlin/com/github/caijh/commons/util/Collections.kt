@@ -17,8 +17,14 @@ object Collections {
         return Collections.emptyList()
     }
 
+    @JvmStatic
     fun <T> emptySet(): Set<T> {
         return Collections.emptySet()
+    }
+
+    @JvmStatic
+    fun <K, V> emptyMap(): Map<K, V> {
+        return Collections.emptyMap();
     }
 
     @JvmStatic

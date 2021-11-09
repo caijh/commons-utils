@@ -31,7 +31,7 @@ public class Maps {
     @SuppressWarnings("unchecked")
     public static Map<String, Object> fromObject(Object obj) {
         if (obj == null) {
-            return null;
+            return Collections.emptyMap();
         }
         return JSON.parseObject(JSON.toJSONString(obj), Map.class);
     }
@@ -45,7 +45,7 @@ public class Maps {
     @SuppressWarnings("unchecked")
     public static Map<String, Object> fromJson(String json) {
         if (json == null) {
-            return null;
+            return Collections.emptyMap();
         }
         return JSON.parseObject(json, Map.class);
     }
