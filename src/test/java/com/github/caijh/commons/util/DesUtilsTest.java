@@ -8,7 +8,7 @@ public class DesUtilsTest {
 
     @Test
     public void encrypt() {
-        DesUtils desUtils = DesUtils.getInstance();
+        DesUtils desUtils = DesUtils.Companion.getInstance();
 
         String key = "aabbcc";
         String encrypt = desUtils.encrypt("1234caa", key);

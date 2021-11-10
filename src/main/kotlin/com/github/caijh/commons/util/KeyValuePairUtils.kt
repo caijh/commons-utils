@@ -29,7 +29,7 @@ object KeyValuePairUtils {
     }
 
     @JvmStatic
-    fun <T> mapToBean(keyValuePars: String, clazz: Class<T>?): T {
+    fun <T> mapToBean(keyValuePars: String, clazz: Class<T>): T {
         val map = readAsMap(keyValuePars, Delimiters.AND)
         return Maps.toObject(map, clazz)
     }

@@ -9,7 +9,7 @@ public class BuilderTest {
 
     @Test
     public void build() {
-        Person person = Builder.of(Person::new)
+        Person person = Builder.use(Person::new)
                                .with(Person::setName, "caijh")
                                .with(Person::setAge, 20)
                                .build();
