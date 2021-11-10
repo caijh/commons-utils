@@ -14,6 +14,7 @@ object GenericUtils {
      * @return 泛型参数的实际类型，如果传入的 clazz 没有实现 ParameterizedType 接口，即不支持泛型时，则直接返回
      * `Object.class`
      */
+    @JvmStatic
     fun getSuperClassGenericType(clazz: Class<*>): Class<*> {
         return getSuperClassGenericType(clazz, 0)
     }
@@ -26,6 +27,7 @@ object GenericUtils {
      * @return 泛型参数的实际类型，如果传入的 clazz 没有实现 ParameterizedType 接口，即不支持泛型时，则直接返回
      * `Object.class`
      */
+    @JvmStatic
     fun getSuperClassGenericType(clazz: Class<*>, index: Int): Class<*> {
         val genType = clazz.genericSuperclass // 得到泛型父类
 
@@ -42,6 +44,7 @@ object GenericUtils {
      * @return 成员变量（Field）的第一个泛型参数的实际类型，如果传入的 clazz 没有实现 ParameterizedType 接口，即不支持泛型时，则直接返回
      * `Object.class`
      */
+    @JvmStatic
     fun getFieldGenericType(field: Field): Class<*> {
         return getFieldGenericType(field, 0)
     }
@@ -54,6 +57,7 @@ object GenericUtils {
      * @return 成员变量（Field）的泛型参数的实际类型，如果传入的 clazz 没有实现 ParameterizedType 接口，即不支持泛型时，则直接返回
      * `Object.class`
      */
+    @JvmStatic
     fun getFieldGenericType(field: Field, index: Int): Class<*> {
         val genericFieldType = field.genericType
 
@@ -70,6 +74,7 @@ object GenericUtils {
      * @return 方法的返回类型的第一个泛型参数的实际类型，如果传入的 clazz 没有实现 ParameterizedType 接口，即不支持泛型时，则直接返回
      * `Object.class`
      */
+    @JvmStatic
     fun getMethodReturnGenericType(method: Method): Class<*> {
         return getMethodReturnGenericType(method, 0)
     }
@@ -82,6 +87,7 @@ object GenericUtils {
      * @return 方法的返回类型泛型参数的实际类型，如果传入的 clazz 没有实现 ParameterizedType 接口，即不支持泛型时，则直接返回
      * `Object.class`
      */
+    @JvmStatic
     fun getMethodReturnGenericType(method: Method, index: Int): Class<*> {
         val returnType = method.genericReturnType
 
@@ -98,6 +104,7 @@ object GenericUtils {
      * @param method 方法
      * @return 方法输入参数中第一个带有泛型的输入参数的所有泛型参数的实际类型
      */
+    @JvmStatic
     fun getMethodParameterGenericTypes(method: Method): List<Class<*>> {
         return getMethodParameterGenericTypes(method, 0)
     }
@@ -110,6 +117,7 @@ object GenericUtils {
      * @param index  带泛型的输入参数的索引
      * @return 方法输入参数中第一个带有泛型的输入参数的所有泛型参数的实际类型
      */
+    @JvmStatic
     fun getMethodParameterGenericTypes(method: Method, index: Int): List<Class<*>> {
         val results: MutableList<Class<*>> = ArrayList()
         val genericParameterTypes = method.genericParameterTypes
@@ -136,6 +144,7 @@ object GenericUtils {
      * @param index             泛型参数的位置索引， 从 0 开始
      * @return 泛型参数的实际类型
      */
+    @JvmStatic
     fun getGenericClass(parameterizedType: ParameterizedType, index: Int): Class<*> {
         return when (val genericClass: Any = parameterizedType.actualTypeArguments[index]) {
             is ParameterizedType -> { // 处理多级泛型
