@@ -139,7 +139,6 @@
                         <configuration>
                             <sourceDirs>
                                 <sourceDir>${project.basedir}/src/main/kotlin</sourceDir>
-                                <sourceDir>${project.basedir}/src/main/java</sourceDir>
                             </sourceDirs>
                             <jvmTarget>1.8</jvmTarget>
                         </configuration>
@@ -234,7 +233,7 @@
             </properties>
             <build>
                 <plugins>
-                    <!-- &lt;!&ndash; Source &ndash;&gt;
+                     <!-- Source -->
                      <plugin>
                          <groupId>org.codehaus.mojo</groupId>
                          <artifactId>build-helper-maven-plugin</artifactId>
@@ -252,7 +251,7 @@
                                  </configuration>
                              </execution>
                          </executions>
-                     </plugin>-->
+                     </plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
@@ -275,8 +274,8 @@
                             <execution>
                                 <phase>prepare-package</phase>
                                 <goals>
-                                    <goal>dokka</goal>
-                                    <goal>javadoc</goal>
+                                    <!--<goal>dokka</goal>
+                                    <goal>javadoc</goal>-->
                                     <goal>javadocJar</goal>
                                 </goals>
                             </execution>
