@@ -1,4 +1,4 @@
-package com.github.caijh.commons.util.http
+package com.github.caijh.commons.util
 
 class RespBodyNoOpConvertor : RespBodyConvertor<String?> {
     override fun convert(respBody: String?): String {

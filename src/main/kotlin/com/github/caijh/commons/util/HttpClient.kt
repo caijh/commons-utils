@@ -1,8 +1,6 @@
-package com.github.caijh.commons.util.http
+package com.github.caijh.commons.util
 
 import com.github.caijh.commons.util.UUID.get
-import com.github.caijh.commons.util.exception.HttpException
-import com.github.caijh.commons.util.exception.UploadException
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.asRequestBody

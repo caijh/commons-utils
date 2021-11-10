@@ -2,8 +2,6 @@ package com.github.caijh.commons.util
 
 import com.github.caijh.commons.util.Base64Utils.decrypt
 import com.github.caijh.commons.util.Base64Utils.encrypt
-import com.github.caijh.commons.util.exception.DecryptException
-import com.github.caijh.commons.util.exception.EncryptException
 import java.nio.charset.StandardCharsets
 import java.security.Key
 import javax.crypto.Cipher

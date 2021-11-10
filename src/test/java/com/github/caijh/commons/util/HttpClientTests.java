@@ -1,6 +1,5 @@
 package com.github.caijh.commons.util;
 
-import com.github.caijh.commons.util.http.HttpClient;
 import org.junit.Assert;
 import org.junit.Test;
 

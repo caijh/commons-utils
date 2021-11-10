@@ -1,6 +1,5 @@
 package com.github.caijh.commons.util
 
-import com.github.caijh.commons.util.constants.Delimiters
 import org.apache.commons.lang3.StringUtils
 
 /**

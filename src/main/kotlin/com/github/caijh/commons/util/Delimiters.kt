@@ -1,4 +1,4 @@
-package com.github.caijh.commons.util.constants
+package com.github.caijh.commons.util
 
 /**
  * 分割符.

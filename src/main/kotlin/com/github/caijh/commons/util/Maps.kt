@@ -3,9 +3,6 @@ package com.github.caijh.commons.util
 import com.alibaba.fastjson.JSON
 import com.github.caijh.commons.util.Collections.emptyMap
 import com.github.caijh.commons.util.Collections.isEmpty
-import com.github.caijh.commons.util.constants.Delimiters
-import com.github.caijh.commons.util.exception.MapKeyException
-import com.github.caijh.commons.util.exception.XMLParseException
 import org.dom4j.Document
 import org.dom4j.DocumentException
 import org.dom4j.DocumentHelper
