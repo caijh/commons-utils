@@ -5,6 +5,8 @@ import java.math.RoundingMode
 import kotlin.Float.Companion.NaN
 
 object Numbers {
+
+    @JvmStatic
     fun getRate(b1: BigDecimal, b2: BigDecimal, scale: Int = 2): Float {
         //计算差值
         if (b2 == b1) {
@@ -18,10 +20,12 @@ object Numbers {
         }
     }
 
+    @JvmStatic
     fun getRate(b1: Int, b2: Int, scale: Int = 2): Float {
         return getRate(BigDecimal(b1.toString()), BigDecimal(b2), scale)
     }
 
+    @JvmStatic
     fun getPercent(n1: Int, n2: Int, scale: Int = 2): Int {
         if (n2 == 0) {
             return 100

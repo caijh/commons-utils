@@ -10,6 +10,7 @@ import javax.annotation.Nonnull
 import javax.imageio.ImageIO
 
 object QRCodeUtils {
+    @JvmStatic
     fun createQRCode(@Nonnull content: String, @Nonnull width: Int, @Nonnull height: Int): String {
         val writer = QRCodeWriter()
         val os = ByteArrayOutputStream()

@@ -5,6 +5,7 @@ import java.lang.reflect.Constructor
 import java.lang.reflect.Method
 
 object ReflectUtils {
+    @JvmStatic
     fun getClass(className: String?): Class<*> {
         return try {
             Class.forName(className)
@@ -13,11 +14,13 @@ object ReflectUtils {
         }
     }
 
+    @JvmStatic
     @Throws(NoSuchMethodException::class)
     fun <T> getConstructor(classType: Class<T>, vararg parameterTypes: Class<*>?): Constructor<T> {
         return classType.getConstructor(*parameterTypes)
     }
 
+    @JvmStatic
     @Throws(NoSuchMethodException::class)
     fun <T> getMethod(classType: Class<T>, name: String, vararg parameterTypes: Class<*>?): Method {
         return classType.getMethod(name, *parameterTypes)

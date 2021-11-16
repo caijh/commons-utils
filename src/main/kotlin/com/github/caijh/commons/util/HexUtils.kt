@@ -4,6 +4,8 @@ import org.apache.commons.lang3.StringUtils
 
 
 object HexUtils {
+
+    @JvmStatic
     fun byteArr2HexStr(buf: ByteArray): String {
         val sb = StringBuilder()
         for (i in buf.indices) {
@@ -16,6 +18,7 @@ object HexUtils {
         return sb.toString()
     }
 
+    @JvmStatic
     fun hexStr2ByteArr(hexStr: String): ByteArray? {
         if (StringUtils.isBlank(hexStr)) {
             return null
