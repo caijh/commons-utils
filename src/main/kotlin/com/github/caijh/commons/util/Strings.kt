@@ -1,10 +1,7 @@
 package com.github.caijh.commons.util
 
 import com.github.caijh.commons.util.Collections.emptyList
-import com.github.caijh.commons.util.DateUtils.Companion.format
 import org.apache.commons.lang3.StringUtils
-import java.math.BigDecimal
-import java.text.NumberFormat
 import java.util.*
 import java.util.function.Function
 import java.util.regex.Pattern
@@ -107,55 +104,4 @@ object Strings {
         return StringUtils.isNotBlank(s)
     }
 
-    fun toString(obj: Any): String {
-        if (obj is Date) {
-            return format(obj)
-        }
-        if (obj is Number) {
-            if (obj is Float) {
-                return Format.DEFAULT.fromFloat(obj)
-            }
-            if (obj is Double) {
-                return Format.DEFAULT.fromDouble(obj)
-            }
-            if (obj is BigDecimal) {
-                return Format.DEFAULT.fromBigDecimal(obj)
-            }
-        }
-        return obj.toString()
-    }
-
-    /**
-     * Supports rendering of Java numeric types float, double,
-     * and BigDecimal in "default" format and in format that
-     * avoids use of scientific notation.
-     */
-    private enum class Format {
-        DEFAULT {
-            override fun fromFloat(floatValue: Float): String {
-                return numberFormat.format(floatValue.toDouble())
-            }
-
-            override fun fromDouble(doubleValue: Double): String {
-                return numberFormat.format(doubleValue)
-            }
-
-            override fun fromBigDecimal(bigDecimalValue: BigDecimal): String {
-                return bigDecimalValue.toPlainString()
-            }
-        };
-
-        companion object {
-            private val numberFormat = NumberFormat.getInstance()
-
-            init {
-                numberFormat.maximumFractionDigits = Int.MAX_VALUE
-                numberFormat.isGroupingUsed = false
-            }
-        }
-
-        abstract fun fromFloat(floatValue: Float): String
-        abstract fun fromDouble(doubleValue: Double): String
-        abstract fun fromBigDecimal(bigDecimalValue: BigDecimal): String
-    }
 }
