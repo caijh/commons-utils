@@ -92,8 +92,19 @@ object Strings {
         return stringBuilder.toString()
     }
 
+    @JvmStatic
     fun isAnyBlank(vararg s: String?): Boolean {
         return Stream.of(*s).anyMatch { cs: String? -> StringUtils.isBlank(cs) }
+    }
+
+    @JvmStatic
+    fun isBlank(s: String?): Boolean {
+        return StringUtils.isBlank(s)
+    }
+
+    @JvmStatic
+    fun isNotBlank(s: String?): Boolean {
+        return StringUtils.isNotBlank(s)
     }
 
     fun toString(obj: Any): String {
