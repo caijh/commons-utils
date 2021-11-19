@@ -8,6 +8,11 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 import java.io.IOException
 
+/**
+ * HttpClient工具类
+ *
+ * @author caijh
+ */
 object HttpClient {
     private val httpClient = OkHttpClient()
     private const val APPLICATION_JSON_UTF8 = "application/json;charset=UTF-8"
