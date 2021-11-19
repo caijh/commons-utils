@@ -3,6 +3,11 @@ package com.github.caijh.commons.util
 import java.nio.charset.StandardCharsets
 import java.security.MessageDigest
 
+/**
+ * MD5加密工具类
+ *
+ * @author caijh
+ */
 object MD5 {
     /**
      * 计算字符串的md5值.
