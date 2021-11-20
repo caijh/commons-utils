@@ -3,6 +3,9 @@ package com.github.caijh.commons.util
 import net.sf.cglib.beans.BeanCopier
 import net.sf.cglib.core.Converter
 
+/**
+ * BeanCopier工具类
+ */
 class BeanUtils private constructor() {
     companion object {
         /**
