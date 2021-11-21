@@ -46,7 +46,7 @@
         <guava.version>31.0.1-jre</guava.version>
         <javadoc.opts>-Xdoclint:none</javadoc.opts>
         <joda-time.version>2.10.13</joda-time.version>
-        <kotlin.version>1.5.31</kotlin.version>
+        <kotlin.version>1.6.0</kotlin.version>
         <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
         <zxing.version>3.4.1</zxing.version>
     </properties>
