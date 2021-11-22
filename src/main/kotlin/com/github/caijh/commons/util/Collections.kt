@@ -28,12 +28,12 @@ object Collections {
     }
 
     @JvmStatic
-    fun <T> toHashSet(list: List<T>?): Set<T> {
+    fun <T> toHashSet(list: List<T>): Set<T> {
         return HashSet(list)
     }
 
     @JvmStatic
-    fun <T> toLinkedList(@Nonnull collection: Collection<T>?): List<T> {
+    fun <T> toLinkedList(@Nonnull collection: Collection<T>): List<T> {
         return LinkedList(collection)
     }
 

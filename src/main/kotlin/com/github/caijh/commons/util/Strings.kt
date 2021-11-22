@@ -94,6 +94,12 @@ object Strings {
         return Stream.of(*s).anyMatch { cs: String? -> StringUtils.isBlank(cs) }
     }
 
+    /**
+     * 判断字符串是否为空
+     *
+     * @param s 字符串
+     * @return list
+     */
     @JvmStatic
     fun isBlank(s: String?): Boolean {
         return StringUtils.isBlank(s)
