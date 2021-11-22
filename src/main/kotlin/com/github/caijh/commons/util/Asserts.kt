@@ -1,7 +1,9 @@
 package com.github.caijh.commons.util
 
 import java.util.function.Supplier
-
+/**
+ * 断言工具类
+ */
 object Asserts {
 
     @JvmStatic
