@@ -10,6 +10,7 @@ class AssertsTest : TestCase() {
         val a = 1
         Asserts.notNull(a)
         Asserts.notNull(a) { NullPointerException() }
+        Asserts.isTrue(true).orElseThrow(NullPointerException())
     }
 
 }

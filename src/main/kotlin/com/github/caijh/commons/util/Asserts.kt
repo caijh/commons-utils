@@ -24,4 +24,13 @@ object Asserts {
             throw supplier.get()
         }
     }
+
+    @JvmStatic
+    fun isTrue(expression: Boolean): ThrowableFunc {
+        return ThrowableFunc { exception: Throwable ->
+            if (!expression) {
+                throw exception
+            }
+        }
+    }
 }
