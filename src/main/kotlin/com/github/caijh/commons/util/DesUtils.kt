@@ -4,7 +4,7 @@ import java.nio.charset.StandardCharsets
 import java.security.Key
 import javax.crypto.spec.SecretKeySpec
 
-class DesUtils private constructor() : SecretUtils {
+object DesUtils : SecretUtils {
     override fun keyAlgorithm(): String {
         return "DES"
     }
@@ -26,7 +26,4 @@ class DesUtils private constructor() : SecretUtils {
         return SecretKeySpec(result, keyAlgorithm())
     }
 
-    companion object {
-        val instance = DesUtils()
-    }
 }

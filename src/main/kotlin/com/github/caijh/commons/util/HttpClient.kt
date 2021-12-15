@@ -48,24 +48,29 @@ object HttpClient {
         return convertor.convert(respBody)
     }
 
+    @JvmStatic
     fun post(url: String, json: String?): String? {
         return post(url, null, APPLICATION_JSON_UTF8.toMediaTypeOrNull(), json)
     }
 
+    @JvmStatic
     fun <T> post(url: String, json: String?, convertor: RespBodyConvertor<T>): T {
         val respBody = post(url, json)
         return convertor.convert(respBody)
     }
 
+    @JvmStatic
     fun post(url: String, mediaType: MediaType?, content: String?): String? {
         return post(url, null, mediaType, content ?: "")
     }
 
+    @JvmStatic
     fun <T> post(url: String, mediaType: MediaType?, content: String?, convertor: RespBodyConvertor<T>): T {
         val respBody = post(url, mediaType, content)
         return convertor.convert(respBody)
     }
 
+    @JvmStatic
     fun <T> post(
         url: String,
         headers: Headers?,
@@ -77,6 +82,7 @@ object HttpClient {
         return convertor.convert(respBody)
     }
 
+    @JvmStatic
     fun post(url: String, headers: Headers?, mediaType: MediaType?, content: String?): String? {
         val builder = Request.Builder()
         if (headers != null) {
@@ -108,6 +114,7 @@ object HttpClient {
      * @param file file to upload
      * @return ResponseBody
      */
+    @JvmStatic
     fun upload(url: String, file: File): ResponseBody? {
         val requestBody: RequestBody = MultipartBody.Builder()
             .setType(MultipartBody.FORM)

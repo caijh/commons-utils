@@ -52,6 +52,7 @@ class UrlInfo private constructor() {
             return urlInfo
         }
 
+        @JvmStatic
         fun getParam(url: String, key: String): String? {
             val urlInfo = from(url)
             return if (urlInfo != null) {
