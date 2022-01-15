@@ -18,7 +18,8 @@ object HttpClient {
     private const val APPLICATION_JSON_UTF8 = "application/json;charset=UTF-8"
     private val HEADERS_EMPTY: Headers? = null
 
-    operator fun get(url: String): String? {
+    @JvmStatic
+    fun get(url: String): String? {
         return get(url, HEADERS_EMPTY)
     }
 
@@ -29,7 +30,8 @@ object HttpClient {
      * @param headers headers
      * @return response content
      */
-    operator fun get(url: String, headers: Headers?): String? {
+    @JvmStatic
+    fun get(url: String, headers: Headers?): String? {
         val builder = Request.Builder()
         if (headers != null) {
             builder.headers(headers)
@@ -38,12 +40,12 @@ object HttpClient {
         return getRespBody(request)
     }
 
-    operator fun <T> get(url: String, convertor: RespBodyConvertor<T>): T {
+    fun <T> get(url: String, convertor: RespBodyConvertor<T>): T {
         val respBody = get(url)
         return convertor.convert(respBody)
     }
 
-    operator fun <T> get(url: String, headers: Headers?, convertor: RespBodyConvertor<T>): T {
+    fun <T> get(url: String, headers: Headers?, convertor: RespBodyConvertor<T>): T {
         val respBody = get(url, headers)
         return convertor.convert(respBody)
     }
