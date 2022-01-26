@@ -6,7 +6,7 @@ import java.lang.reflect.Method
 
 object ReflectUtils {
     @JvmStatic
-    fun getClass(className: String?): Class<*> {
+    fun getClass(className: String): Class<*> {
         return try {
             Class.forName(className)
         } catch (e: ClassNotFoundException) {
