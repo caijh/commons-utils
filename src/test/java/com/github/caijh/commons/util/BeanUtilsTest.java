@@ -19,7 +19,6 @@ public class BeanUtilsTest {
         BeanUtils.copyIgnoreNullProperties(a, b);
         Assert.assertEquals(10, b2.getAge().intValue());
 
-
         B b3 = new B();
         BeanUtils.copyProperties(a, b3, (o, aClass, o1) -> {
             System.out.println(o);
@@ -30,9 +29,15 @@ public class BeanUtilsTest {
 
         Assert.assertEquals(a.getName(), b3.getName());
 
+        a.setAge(20);
+        B b4 = new B();
+        BeanUtils.copyProperties(a, b4, "age");
+
+        Assert.assertNull(b4.getAge());
+
     }
 
-    class A {
+    static class A {
 
         private String name;
         private Integer age;
@@ -55,7 +60,7 @@ public class BeanUtilsTest {
 
     }
 
-    class B {
+    static class B {
 
         private String name;
         private Integer age;

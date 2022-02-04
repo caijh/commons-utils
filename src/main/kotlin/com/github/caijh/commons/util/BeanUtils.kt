@@ -44,6 +44,23 @@ class BeanUtils private constructor() {
                 o
             }
         }
+
+        @JvmStatic
+        fun copyProperties(
+            source: Any,
+            target: Any,
+            vararg ignoreProperties: String
+        ) {
+            copyProperties(source, target) { value: Any?, _: Class<*>?, setMethodName: Any ->
+                val setName = setMethodName.toString()
+                val propertyName = Strings.firstCharLowerCase(setName.substring("set".length))
+                if (propertyName in ignoreProperties) {
+                    null
+                } else {
+                    value
+                }
+            }
+        }
     }
 
     init {

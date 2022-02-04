@@ -90,6 +90,14 @@ object Strings {
     }
 
     @JvmStatic
+    fun firstCharLowerCase(str: String): String {
+        require(!StringUtils.isBlank(str))
+        val stringBuilder = StringBuilder(str)
+        stringBuilder.setCharAt(0, Character.toLowerCase(str[0]))
+        return stringBuilder.toString()
+    }
+
+    @JvmStatic
     fun isAnyBlank(vararg s: String?): Boolean {
         return Stream.of(*s).anyMatch { cs: String? -> StringUtils.isBlank(cs) }
     }
