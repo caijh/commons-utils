@@ -106,13 +106,16 @@ object Strings {
      * 判断字符串是否为空
      *
      * @param s 字符串
-     * @return list
+     * @return true, if string is blank or null
      */
     @JvmStatic
     fun isBlank(s: String?): Boolean {
         return StringUtils.isBlank(s)
     }
 
+    /**
+     * 判断字符串是否不为空
+     */
     @JvmStatic
     fun isNotBlank(s: String?): Boolean {
         return StringUtils.isNotBlank(s)
