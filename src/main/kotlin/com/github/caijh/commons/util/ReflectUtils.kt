@@ -2,7 +2,6 @@ package com.github.caijh.commons.util
 
 import com.github.caijh.commons.util.Strings.firstCharUpperCase
 import java.lang.reflect.Constructor
-import java.lang.reflect.Method
 
 object ReflectUtils {
     @JvmStatic
@@ -18,12 +17,6 @@ object ReflectUtils {
     @Throws(NoSuchMethodException::class)
     fun <T> getConstructor(classType: Class<T>, vararg parameterTypes: Class<*>?): Constructor<T> {
         return classType.getConstructor(*parameterTypes)
-    }
-
-    @JvmStatic
-    @Throws(NoSuchMethodException::class)
-    fun <T> getMethod(classType: Class<T>, name: String, vararg parameterTypes: Class<*>?): Method {
-        return classType.getMethod(name, *parameterTypes)
     }
 
     /**
@@ -44,8 +37,13 @@ object ReflectUtils {
             filed = chainField.substring(0, firstDotIdx)
             chain = true
         }
-        val getMethod = getMethod(obj.javaClass, "get" + firstCharUpperCase(filed))
-        val returnObject = getMethod.invoke(obj)
+        val method = try {
+            obj.javaClass.getMethod("get" + firstCharUpperCase(filed))
+        } catch (e: Exception) {
+            obj.javaClass.getMethod("is" + firstCharUpperCase(filed))
+        }
+        method.trySetAccessible()
+        val returnObject = method.invoke(obj)
         return if (chain) invokeGetter(returnObject, chainField.substring(firstDotIdx + 1)) else returnObject
     }
 
