@@ -1,7 +1,6 @@
 package com.github.caijh.commons.util
 
 import com.github.caijh.commons.util.Strings.firstCharUpperCase
-import java.lang.reflect.Constructor
 
 object ReflectUtils {
     @JvmStatic
@@ -11,12 +10,6 @@ object ReflectUtils {
         } catch (e: ClassNotFoundException) {
             throw ReflectRuntimeException(e)
         }
-    }
-
-    @JvmStatic
-    @Throws(NoSuchMethodException::class)
-    fun <T> getConstructor(classType: Class<T>, vararg parameterTypes: Class<*>?): Constructor<T> {
-        return classType.getConstructor(*parameterTypes)
     }
 
     /**
