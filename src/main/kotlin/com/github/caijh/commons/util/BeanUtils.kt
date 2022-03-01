@@ -1,5 +1,7 @@
 package com.github.caijh.commons.util
 
+import com.github.caijh.commons.util.reflection.invoker.GetFieldInvoker
+import com.github.caijh.commons.util.reflection.property.PropertyNamer
 import net.sf.cglib.beans.BeanCopier
 import net.sf.cglib.core.Converter
 
@@ -35,8 +37,9 @@ class BeanUtils private constructor() {
                 if (o == null) { // if value is null, set value become the target object field's value.
                     try {
                         val setName = setMethodName.toString()
-                        val getMethod = target.javaClass.getMethod("get" + setName.substring("set".length))
-                        o = getMethod.invoke(target)
+                        val property = PropertyNamer.methodToProperty(setName)
+                        val field = target.javaClass.getDeclaredField(property)
+                        o = GetFieldInvoker(field).invoke(target)
                     } catch (ignored: Exception) {
                         // ignored
                     }
