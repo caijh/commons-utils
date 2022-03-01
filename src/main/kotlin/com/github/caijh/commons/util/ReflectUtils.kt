@@ -1,6 +1,6 @@
 package com.github.caijh.commons.util
 
-import com.github.caijh.commons.util.Strings.firstCharUpperCase
+import com.github.caijh.commons.util.reflection.invoker.GetFieldInvoker
 
 object ReflectUtils {
     @JvmStatic
@@ -24,19 +24,16 @@ object ReflectUtils {
     @Throws(Exception::class)
     fun invokeGetter(obj: Any, chainField: String): Any {
         val firstDotIdx = chainField.indexOf(Delimiters.DOT)
-        var filed = chainField
+        var fieldName = chainField
         var chain = false
         if (firstDotIdx > 0) {
-            filed = chainField.substring(0, firstDotIdx)
+            fieldName = chainField.substring(0, firstDotIdx)
             chain = true
         }
-        val method = try {
-            obj.javaClass.getMethod("get" + firstCharUpperCase(filed))
-        } catch (e: Exception) {
-            obj.javaClass.getMethod("is" + firstCharUpperCase(filed))
-        }
-        method.trySetAccessible()
-        val returnObject = method.invoke(obj)
+
+        val field = obj.javaClass.getField(fieldName)
+        val returnObject = GetFieldInvoker(field).invoke(obj)
+
         return if (chain) invokeGetter(returnObject, chainField.substring(firstDotIdx + 1)) else returnObject
     }
 
