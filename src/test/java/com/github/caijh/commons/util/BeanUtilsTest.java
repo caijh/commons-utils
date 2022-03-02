@@ -35,6 +35,13 @@ public class BeanUtilsTest {
 
         Assert.assertNull(b4.getAge());
 
+        A a2 = new A();
+        a2.setName("test");
+        a2.setAge(20);
+        C c1 = new C();
+        c1.setTitle("title");
+        BeanUtils.copyProperties(a2, c1);
+        Assert.assertEquals(a2.getName(), c1.getName());
     }
 
     static class A {
@@ -43,7 +50,7 @@ public class BeanUtilsTest {
         private Integer age;
 
         public String getName() {
-            return name;
+            return this.name;
         }
 
         public void setName(String name) {
@@ -51,7 +58,7 @@ public class BeanUtilsTest {
         }
 
         public Integer getAge() {
-            return age;
+            return this.age;
         }
 
         public void setAge(Integer age) {
@@ -66,7 +73,7 @@ public class BeanUtilsTest {
         private Integer age;
 
         public String getName() {
-            return name;
+            return this.name;
         }
 
         public void setName(String name) {
@@ -74,11 +81,25 @@ public class BeanUtilsTest {
         }
 
         public Integer getAge() {
-            return age;
+            return this.age;
         }
 
         public void setAge(Integer age) {
             this.age = age;
+        }
+
+    }
+
+    static class C extends A {
+
+        private String title;
+
+        public String getTitle() {
+            return this.title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
         }
 
     }
