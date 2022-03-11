@@ -51,6 +51,9 @@ class DateUtils private constructor() {
         @JvmStatic
         @JvmOverloads
         fun format(date: Date?, pattern: String = DATE_TIME_FORMAT_DEFAULT): String {
+            if (date == null) {
+                return ""
+            }
             return SimpleDateFormat(pattern).format(date)
         }
 
