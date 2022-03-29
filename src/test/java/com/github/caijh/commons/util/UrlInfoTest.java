@@ -17,6 +17,7 @@ public class UrlInfoTest {
         assertEquals("http", urlInfo.getSchema());
         assertEquals("127.0.0.1", urlInfo.getHost());
         assertEquals("8080", urlInfo.getPort());
+        System.out.println(urlInfo.getPath());
     }
 
 }
