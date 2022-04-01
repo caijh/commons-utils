@@ -10,6 +10,8 @@ import java.util.stream.Stream
 
 object Strings {
 
+    const val EMPTY = ""
+
     /**
      * 将字符串转换为int array.
      * 如1,2,3,4,5, regex：,
