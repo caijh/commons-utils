@@ -3,7 +3,7 @@ package com.github.caijh.commons.util
 /**
  * 分割符.
  *
- * @author caijunhui
+ * @author caijh
  * @since 2017/5/9
  */
 object Delimiters {
@@ -14,4 +14,5 @@ object Delimiters {
     const val COLON = ":"
     const val BAR = "|"
     const val DASH = "-"
+    const val VIRGULE = "/"
 }
