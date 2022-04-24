@@ -15,7 +15,7 @@ object UUID {
      */
     @JvmStatic
     fun get(): String {
-        return get(replaceDash = true, toUpperCase = true)
+        return get(false)
     }
 
     /**
@@ -26,7 +26,7 @@ object UUID {
      */
     @JvmStatic
     fun get(replaceDash: Boolean): String {
-        return get(true, replaceDash)
+        return get(replaceDash, false)
     }
 
     /**
@@ -37,7 +37,7 @@ object UUID {
      * @return UUID
      */
     @JvmStatic
-    fun get(replaceDash: Boolean, toUpperCase: Boolean): String {
+    fun get(replaceDash: Boolean = true, toUpperCase: Boolean = true): String {
         var uuid = UUID.randomUUID().toString()
         if (replaceDash) {
             uuid = uuid.replace(Delimiters.DASH, "")
