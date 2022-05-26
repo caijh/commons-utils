@@ -3,6 +3,7 @@ package com.github.caijh.commons.util;
 import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class UuidUtilsTest {
 
@@ -10,7 +11,7 @@ public class UuidUtilsTest {
     public void uuid() {
         String uuid = UUID.get();
         System.out.println(uuid);
-        assertFalse(uuid.contains("-"));
+        assertTrue(uuid.contains("-"));
         uuid = UUID.get(true, true);
         assertFalse(uuid.contains("-"));
         System.out.println(uuid);
