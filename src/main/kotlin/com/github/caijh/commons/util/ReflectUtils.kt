@@ -32,9 +32,9 @@ object ReflectUtils {
         }
 
         val field = try {
-            obj.javaClass.getField(fieldName)
-        } catch (e: NoSuchFieldException) {
             obj.javaClass.getDeclaredField(fieldName)
+        } catch (e: NoSuchFieldException) {
+            obj.javaClass.getField(fieldName)
         }
         val returnObject = GetFieldInvoker(field).invoke(obj)
 
