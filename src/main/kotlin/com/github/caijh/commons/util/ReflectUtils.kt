@@ -31,7 +31,11 @@ object ReflectUtils {
             chain = true
         }
 
-        val field = obj.javaClass.getField(fieldName)
+        val field = try {
+            obj.javaClass.getField(fieldName)
+        } catch (e: NoSuchFieldException) {
+            obj.javaClass.getDeclaredField(fieldName)
+        }
         val returnObject = GetFieldInvoker(field).invoke(obj)
 
         return if (chain) invokeGetter(returnObject, chainField.substring(firstDotIdx + 1)) else returnObject
