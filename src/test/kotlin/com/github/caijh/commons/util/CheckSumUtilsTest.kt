@@ -11,10 +11,10 @@ class CheckSumUtilsTest {
     fun checkSum() {
         val file = File("src/test/resources/test.txt")
         var checkSum = CheckSumUtils.checkSum(file, MessageDigest.getInstance("MD5"))
-        assertEquals("0bee89b07a248e27c83fc3d5951213c1", checkSum)
+        assertEquals("C13B6AFECF97EA6B38D21A8F5167FA1E", checkSum.uppercase())
 
         checkSum = CheckSumUtils.checkSum(file)
-        assertEquals("03cfd743661f07975fa2f1220c5194cbaff48451", checkSum)
+        assertEquals("34D4150ADC3347F1DD8CE19FDF65B74D971AB602", checkSum.uppercase())
     }
 
 }
