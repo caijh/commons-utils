@@ -8,6 +8,7 @@ import net.sf.cglib.core.Converter
 /**
  * BeanCopier工具类
  */
+@Deprecated("use Spring BeanUtils instead")
 class BeanUtils private constructor() {
     companion object {
         /**
