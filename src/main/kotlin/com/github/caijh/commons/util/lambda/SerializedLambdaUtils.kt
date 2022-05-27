@@ -24,5 +24,4 @@ object SerializedLambdaUtils {
         return serializedLambda
     }
 
-
 }
