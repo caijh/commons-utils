@@ -24,12 +24,8 @@ class UrlInfo private constructor() {
             .compile("((?<schema>\\w+)://)?((?<user>\\w+):(?<password>\\w+)@)?(?<host>[^/:]+)(:(?<port>\\d*))?(?<path>[^ ]*)")
 
         @JvmStatic
-        fun from(urlString: String?): UrlInfo? {
+        fun from(urlString: String): UrlInfo? {
             var urlInfo: UrlInfo? = null
-
-            if (urlString == null) {
-                return urlInfo
-            }
 
             val matcher = URL_PATTERN.matcher(urlString)
             if (matcher.matches()) {
