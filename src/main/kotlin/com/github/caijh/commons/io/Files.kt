@@ -27,7 +27,7 @@ object Files {
                 }
             }
         } catch (e: Exception) {
-            throw e;
+            throw e
         }
     }
 }
