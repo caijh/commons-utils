@@ -10,7 +10,7 @@ import java.util.stream.Stream
 
 object Strings {
 
-    const val EMPTY = ""
+    const val EMPTY_STRING = ""
 
     /**
      * 将字符串转换为int array.
