@@ -1,5 +1,6 @@
 package com.github.caijh.commons.util
 
+import com.github.caijh.commons.image.Images
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.EncodeHintType
 import com.google.zxing.client.j2se.MatrixToImageWriter
