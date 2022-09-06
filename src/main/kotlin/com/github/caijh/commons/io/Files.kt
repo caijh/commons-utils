@@ -3,8 +3,11 @@ package com.github.caijh.commons.io
 import com.github.caijh.commons.util.Delimiters
 import com.github.caijh.commons.util.Strings
 import java.io.BufferedInputStream
+import java.io.File
 import java.io.InputStream
 import java.io.OutputStream
+import java.nio.file.Files
+import java.nio.file.Path
 
 object Files {
     @JvmStatic
@@ -33,6 +36,16 @@ object Files {
         } catch (e: Exception) {
             throw e
         }
+    }
+
+    @JvmStatic
+    fun getContentType(path: Path): String {
+        return Files.probeContentType(path)
+    }
+
+    @JvmStatic
+    fun createTempFile(prefix: String, suffix: String): File {
+        return Files.createTempFile(prefix, suffix).toFile()
     }
 
 }
