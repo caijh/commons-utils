@@ -44,7 +44,7 @@ object Collections {
 
     @JvmStatic
     fun <T> isEmpty(collection: Collection<T>?): Boolean {
-        return collection == null || collection.isEmpty()
+        return collection.isNullOrEmpty()
     }
 
     @JvmStatic
