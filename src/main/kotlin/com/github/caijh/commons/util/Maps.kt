@@ -11,12 +11,12 @@ import java.util.function.Consumer
 
 object Maps {
     @JvmStatic
-    fun isEmpty(map: Map<*, *>) {
+    fun isEmpty(map: Map<*, *>?): Boolean {
         return map == null || map.isEmpty()
     }
 
     @JvmStatic
-    fun isNotEmpty(map: Map<*, *>) {
+    fun isNotEmpty(map: Map<*, *>): Boolean {
         return !isEmpty(map)
     }
 
