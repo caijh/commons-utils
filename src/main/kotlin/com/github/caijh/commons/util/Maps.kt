@@ -10,6 +10,16 @@ import org.dom4j.Element
 import java.util.function.Consumer
 
 object Maps {
+    @JvmStatic
+    fun isEmpty(map: Map<*, *>) {
+        return map == null || map.isEmpty()
+    }
+
+    @JvmStatic
+    fun isNotEmpty(map: Map<*, *>) {
+        return !isEmpty(map)
+    }
+
     /**
      * 将Object对象转化为Map对象.
      *
