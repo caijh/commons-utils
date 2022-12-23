@@ -7,12 +7,11 @@ import com.google.zxing.client.j2se.MatrixToImageWriter
 import com.google.zxing.qrcode.QRCodeWriter
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel
 import java.io.ByteArrayOutputStream
-import javax.annotation.Nonnull
 import javax.imageio.ImageIO
 
 object QRCodeUtils {
     @JvmStatic
-    fun createQRCode(@Nonnull content: String, @Nonnull width: Int, @Nonnull height: Int): String {
+    fun createQRCode(content: String, width: Int, height: Int): String {
         val writer = QRCodeWriter()
         val os = ByteArrayOutputStream()
         val hints = HashMap<EncodeHintType, Comparable<*>>()

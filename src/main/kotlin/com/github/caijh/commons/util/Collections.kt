@@ -2,7 +2,6 @@ package com.github.caijh.commons.util
 
 import java.util.*
 import java.util.Collections
-import javax.annotation.Nonnull
 
 /**
  * CollectionUtils.
@@ -33,12 +32,12 @@ object Collections {
     }
 
     @JvmStatic
-    fun <T> toLinkedList(@Nonnull collection: Collection<T>): List<T> {
+    fun <T> toLinkedList(collection: Collection<T>): List<T> {
         return LinkedList(collection)
     }
 
     @JvmStatic
-    fun <T> toLinkedList(@Nonnull array: Array<T>): List<T> {
+    fun <T> toLinkedList(array: Array<T>): List<T> {
         return LinkedList(listOf(*array))
     }
 
