@@ -7,6 +7,6 @@ object Lists {
 
     @JvmStatic
     fun <T> newArrayList(): ArrayList<T> {
-        return arrayListOf();
+        return arrayListOf()
     }
 }
