@@ -1,12 +1,10 @@
 package com.github.caijh.commons.util
 
-import org.joda.time.Days
-import org.joda.time.LocalDate
-import org.joda.time.LocalDateTime
 import java.text.ParseException
 import java.text.SimpleDateFormat
-import java.time.Instant
+import java.time.*
 import java.util.*
+
 
 /**
  * DateUtils.
@@ -69,17 +67,39 @@ class DateUtils private constructor() {
 
         @JvmStatic
         fun daysBetween(d1: Date, d2: Date): Int {
-            return Days.daysBetween(LocalDate.fromDateFields(d1), LocalDate.fromDateFields(d2)).days
+            return Period.between(asLocalDate(d1), asLocalDate(d2)).days
         }
 
         @JvmStatic
         fun addSeconds(date: Date, seconds: Int): Date {
-            return LocalDateTime.fromDateFields(date).plusSeconds(seconds).toDate()
+            return Date.from(
+                asLocalDateTime(date).plusSeconds(seconds.toLong()).atZone(ZoneId.systemDefault()).toInstant()
+            )
         }
 
         @JvmStatic
         fun addDays(date: Date, days: Int): Date {
-            return LocalDateTime.fromDateFields(date).plusDays(days).toDate()
+            return Date.from(asLocalDateTime(date).plusDays(days.toLong()).atZone(ZoneId.systemDefault()).toInstant())
+        }
+
+        @JvmStatic
+        fun asLocalDate(date: Date): LocalDate? {
+            return Instant.ofEpochMilli(date.time).atZone(ZoneId.systemDefault()).toLocalDate()
+        }
+
+        @JvmStatic
+        fun asLocalDateTime(date: Date): LocalDateTime {
+            return Instant.ofEpochMilli(date.time).atZone(ZoneId.systemDefault()).toLocalDateTime()
+        }
+
+        @JvmStatic
+        fun asDate(localDate: LocalDate): Date {
+            return Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant())
+        }
+
+        @JvmStatic
+        fun asDate(localDateTime: LocalDateTime): Date {
+            return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant())
         }
     }
 
