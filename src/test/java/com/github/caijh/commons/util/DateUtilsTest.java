@@ -1,9 +1,11 @@
 package com.github.caijh.commons.util;
 
+import java.time.DayOfWeek;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAdjusters;
 import java.util.Date;
 
-import org.joda.time.LocalDate;
-import org.joda.time.LocalDateTime;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -31,18 +33,23 @@ public class DateUtilsTest {
 
         Assert.assertEquals(0, days);
 
-        Assert.assertEquals(1, DateUtils.daysBetween(date, LocalDate.fromDateFields(date).plusDays(1).toDate()));
+        Assert.assertEquals(1, DateUtils.daysBetween(date, DateUtils.addDays(date, 1)));
 
         now = DateUtils.now("HH:mm:ss");
         System.out.println(DateUtils.format(now));
 
-        System.out.println(DateUtils.format(LocalDateTime.now().minusYears(1).dayOfYear().withMinimumValue().withMillisOfDay(0).toDate()));
-        System.out.println(DateUtils.format(LocalDateTime.now().minusYears(1).dayOfYear().withMaximumValue().withTime(23, 59, 59, 999).toDate()));
+        System.out.println(DateUtils.format(DateUtils.asDate(LocalDateTime.now().minusYears(1).with(TemporalAdjusters.firstDayOfYear()).withHour(0)
+                                                                          .withMinute(0).withSecond(0).withNano(0))));
+        System.out.println(DateUtils.format(DateUtils.asDate(LocalDateTime.now().minusYears(1).with(TemporalAdjusters.lastDayOfYear()).withHour(23)
+                                                                          .withMinute(59).withSecond(59).withNano(999))));
 
-        System.out.println(DateUtils.format(LocalDateTime.now().minusMonths(1).dayOfMonth().withMinimumValue().withMillisOfDay(0).toDate()));
-        System.out.println(DateUtils.format(LocalDateTime.now().minusMonths(1).dayOfMonth().withMaximumValue().withTime(23, 59, 59, 999).toDate()));
+        System.out.println(DateUtils.format(DateUtils.asDate(LocalDateTime.now().minusMonths(1).with(TemporalAdjusters.firstDayOfMonth()).withHour(0)
+                                                                          .withMinute(0).withSecond(0).withNano(0))));
+        System.out.println(DateUtils.format(DateUtils.asDate(LocalDateTime.now().minusMonths(1).with(TemporalAdjusters.lastDayOfMonth()).withHour(23)
+                                                                          .withMinute(59).withSecond(59).withNano(999))));
 
-        System.out.println(DateUtils.format((LocalDateTime.now().dayOfWeek().withMaximumValue().millisOfDay().withMaximumValue().toDate())));
+        System.out.println(DateUtils.format(DateUtils.asDate(LocalDateTime.now().with(DayOfWeek.SUNDAY).withHour(23).withMinute(59).withSecond(59)
+                                                                          .withNano(999))));
 
         now = DateUtils.now();
         System.out.println(DateUtils.format(now));
@@ -62,7 +69,7 @@ public class DateUtilsTest {
     }
 
     private Date getMiddleDate(Date d1, Date d2) {
-        return LocalDateTime.fromDateFields(d1).plusMillis((int) Math.abs(d2.getTime() - d1.getTime()) / 2).toDate();
+        return DateUtils.asDate(DateUtils.asLocalDateTime(d1).plus((int) Math.abs(d2.getTime() - d1.getTime()) / 2, ChronoUnit.MILLIS));
     }
 
 }
