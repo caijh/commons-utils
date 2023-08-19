@@ -1,5 +1,6 @@
 package com.github.caijh.commons.util
 
+import org.apache.commons.lang3.time.FastDateFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.time.*
@@ -52,7 +53,7 @@ class DateUtils private constructor() {
             if (date == null) {
                 return ""
             }
-            return SimpleDateFormat(pattern).format(date)
+            return FastDateFormat.getInstance(pattern).format(date)
         }
 
         @JvmStatic
