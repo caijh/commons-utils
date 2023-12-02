@@ -48,6 +48,12 @@ class DateUtils private constructor() {
         }
 
         @JvmStatic
+        fun timestampToDate(timestampInMillis: Long): LocalDateTime {
+            val instant = Instant.ofEpochMilli(timestampInMillis)
+            return LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+        }
+
+        @JvmStatic
         @JvmOverloads
         fun format(date: Date?, pattern: String = DATE_TIME_FORMAT_DEFAULT): String {
             if (date == null) {
