@@ -17,16 +17,14 @@ object CRC32 {
      */
     @JvmStatic
     fun calcCrc32Value(inputStream: InputStream): Int {
-        var checkedInputStream: CheckedInputStream? = null
+        val checkedInputStream: CheckedInputStream?
         val crc32 = CRC32()
         checkedInputStream = CheckedInputStream(inputStream, crc32)
         val buffer = ByteArray(1024 * 1024) //每次读取1M
-        try {
-            while (checkedInputStream.read(buffer, 0, buffer.size) != -1) {
+        checkedInputStream.use { inpuStream ->
+            while (inpuStream.read(buffer, 0, buffer.size) != -1) {
                 // do nothing
             }
-        } finally {
-            checkedInputStream.close()
         }
         val crc32Value = crc32.value
         return crc32Value.toInt()
