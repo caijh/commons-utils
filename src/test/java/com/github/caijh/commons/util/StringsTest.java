@@ -1,7 +1,9 @@
 package com.github.caijh.commons.util;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
@@ -60,4 +62,18 @@ public class StringsTest {
         assertTrue(Strings.isAnyBlank(strings));
     }
 
+
+    @Test
+    public void testTemplateString() {
+        Map<String, Object> params = new HashMap<>();
+        params.put("text", "'${number}' is a placeholder.");
+        params.put("number", 42);
+        String TEMPLATE = "Text: [${text}] Number: [${number}] Text again: [${text}]";
+        String result = Strings.format(TEMPLATE, params);
+        assertEquals("Text: ['${number}' is a placeholder.] Number: [42] Text again: ['${number}' is a placeholder.]", result);
+
+        TEMPLATE = "Text: [{}] Number: [{    }]";
+        result = Strings.format(TEMPLATE, "'${number}' is a placeholder.", 42);
+        assertEquals("Text: ['${number}' is a placeholder.] Number: [42]", result);
+    }
 }

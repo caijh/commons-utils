@@ -4,9 +4,11 @@ import com.github.caijh.commons.util.Collections.emptyList
 import org.apache.commons.lang3.StringUtils
 import java.util.*
 import java.util.function.Function
+import java.util.regex.Matcher
 import java.util.regex.Pattern
 import java.util.stream.Collectors
 import java.util.stream.Stream
+
 
 object Strings {
 
@@ -121,6 +123,50 @@ object Strings {
     @JvmStatic
     fun isNotBlank(s: String?): Boolean {
         return StringUtils.isNotBlank(s)
+    }
+
+    @JvmStatic
+    fun format(template: String, parameters: Map<String, Any?>): String {
+        val newTemplate = java.lang.StringBuilder(template)
+        val valueList: MutableList<Any?> = ArrayList()
+
+        val matcher: Matcher = Pattern.compile("[$][{](\\w+)}").matcher(template)
+
+        while (matcher.find()) {
+            val key: String = matcher.group(1)
+
+            val paramName = "\${$key}"
+            val index = newTemplate.indexOf(paramName)
+            if (index != -1) {
+                newTemplate.replace(index, index + paramName.length, "%s")
+                valueList.add(parameters[key])
+            }
+        }
+
+        return String.format(newTemplate.toString(), *valueList.toTypedArray())
+    }
+
+    @JvmStatic
+    fun format(template: String, vararg parameters: Any): String {
+        val newTemplate = java.lang.StringBuilder(template)
+        val valueList: MutableList<Any?> = ArrayList()
+
+        val matcher: Matcher = Pattern.compile("[{](\\s*)}").matcher(template)
+
+        var i = 0;
+        while (matcher.find()) {
+            val key: String = matcher.group(1)
+
+            val paramName = "{$key}"
+            val index = newTemplate.indexOf(paramName)
+            if (index != -1) {
+                newTemplate.replace(index, index + paramName.length, "%s")
+                valueList.add(parameters[i].toString())
+            }
+            i++;
+        }
+
+        return String.format(newTemplate.toString(), *valueList.toTypedArray())
     }
 
 }
