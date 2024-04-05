@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectStreamClass;
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -17,6 +18,7 @@ import org.apache.commons.lang3.SerializationUtils;
 @SuppressWarnings("unused")
 public class SerializedLambda implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 8025925345765570181L;
 
     private Class<?> capturingClass;
@@ -28,7 +30,7 @@ public class SerializedLambda implements Serializable {
     private String implMethodSignature;
     private int implMethodKind;
     private String instantiatedMethodType;
-    private Object[] capturedArgs;
+    private transient Object[] capturedArgs;
 
     /**
      * 通过反序列化转换 lambda 表达式，该方法只能序列化 lambda 表达式，不能序列化接口实现或者正常非 lambda 写法的对象
