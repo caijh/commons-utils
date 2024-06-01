@@ -7,7 +7,11 @@ import org.dom4j.Document
 import org.dom4j.DocumentException
 import org.dom4j.DocumentHelper
 import org.dom4j.Element
+import java.util.*
 import java.util.function.Consumer
+import java.util.function.Predicate
+import java.util.stream.Collectors
+
 
 object Maps {
     @JvmStatic
@@ -186,5 +190,43 @@ object Maps {
         map.putAll(map1)
         map.putAll(map2)
         return map
+    }
+
+    @JvmStatic
+    fun <K, V> filterByKey(map: Map<K, V>, predicate: Predicate<K>): Map<K, V> {
+        Objects.requireNonNull(map)
+        Objects.requireNonNull<Any>(predicate)
+
+        return map.entries
+            .stream()
+            .filter { item: Map.Entry<K, V> ->
+                predicate.test(
+                    item.key
+                )
+            }
+            .collect(
+                Collectors.toMap(
+                    { it.key },
+                    { it.value })
+            )
+    }
+
+    @JvmStatic
+    fun <K, V> filterByValue(map: Map<K, V>, predicate: Predicate<V>): Map<K, V> {
+        Objects.requireNonNull(map)
+        Objects.requireNonNull(predicate)
+
+        return map.entries
+            .stream()
+            .filter { item: Map.Entry<K, V> ->
+                predicate.test(
+                    item.value
+                )
+            }
+            .collect(
+                Collectors.toMap(
+                    { it.key },
+                    { it.value })
+            )
     }
 }
